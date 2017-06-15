@@ -1,2 +1,2 @@
 # test script
-# druga linijka
+# druga linijka.
