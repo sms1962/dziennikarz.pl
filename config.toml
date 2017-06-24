@@ -4,7 +4,7 @@ languageCode = "pl-pl"
 title = "A Hugo website"
 theme = "hugo-lithium-theme"
 googleAnalytics = ""
-disqusShortname = ""
+disqusShortname = "sms"
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 
 [permalinks]
@@ -31,7 +31,8 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
     MathJaxVersion = "2.7.1"
 
     [params.logo]
-    url = "logo.png"
+    # url = "logo.png"
+    url = "stanislaw-obciete117x150.jpg"
     width = 50
     height = 50
     alt = "Logo"

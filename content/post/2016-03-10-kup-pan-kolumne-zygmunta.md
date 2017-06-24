@@ -14,8 +14,6 @@ categories:
 ---
 Serwisy dziennikarstwa obywatelskiego z punktu widzenia wydawcy mają prawie same zalety i jeden problem. Prawny. Wydawcy, ze względu na swoje bezpieczeństwo prawne nie mogą przejmować praw do materiałów wysłanych przez internautów, więc już dawno wymyśliły, że tylko je hostują. Nieraz wynikają z tego śmieszne i straszne rzeczy jak w przypadku [Kontakt24][1] &#8211; platformy dla widzów TVN24.
 
-<!--more-->
-
 Kilka dni temu na autostradzie A4 miał miejsce jak to niektóre media eufemistycznie określają &#8222;incydent&#8221; z udziałem auta, którym jechał Prezydent Andrzej Duda. W prezydenckim BMW nagle &#8211; przy sporej prędkości &#8211; eksplodowała opona. Całe zdarzenie zostało nagrane przez jadącego przeciwnym pasem kierowcę, który następnie wysłał je do serwisu <a href="http://kontakt24.tvn24.pl/" target="_blank">Kontakt24</a>.  Dzięki temu stacja TVN24, która jest właścicielem serwisu, puszczała aż do znudzenia ten film.
 
 Z twittów Marzeny Paczuskiej, szefowej Wiadomości w TVP wynika, że stacja ta poprosiła TVN o udostępnienie filmu, jednak spotkała się z odmową. W mailu jak twierdzi Paczuska, TVN poinformował, że zakupił od internauty prawa do filmu i nie zgadza się na ich wykorzystanie. Paczuska na następny dzień stwierdziła, że TVN ich oszukała:
@@ -36,7 +34,7 @@ Kuknąłem sobie do regulaminu <a href="http://kontakt24.tvn24.pl/regulamin.htm"
 
 Jak się domyślałem, Kontakt24 tylko hostuje, a więc nie nabywa praw do publikowanych materiałów. Jednak w par. 5 pkt. 8 czytam i czuję jak tężeje mi twarz:
 
-> 8. Użytkownik wyraża zgodę na udzielanie przez Administratora (oraz inne spółki z Grupy TVN) sublicencji oraz przenoszenie praw i zezwalanie osobom trzecim na korzystanie z przesłanych wiadomości, zdjęć lub filmów oraz zamieszczonych na Koncie Użytkownika wiadomości, zdjęć, filmów lub innych materiałów, w zakresie określonym w niniejszym Regulaminie Kontaktu TVN 24.
+> Użytkownik wyraża zgodę na udzielanie przez Administratora (oraz inne spółki z Grupy TVN) sublicencji oraz przenoszenie praw i zezwalanie osobom trzecim na korzystanie z przesłanych wiadomości, zdjęć lub filmów oraz zamieszczonych na Koncie Użytkownika wiadomości, zdjęć, filmów lub innych materiałów, w zakresie określonym w niniejszym Regulaminie Kontaktu TVN24.
 
 Sprytne. Wygląda to bowiem tak, że Kontakt24 nie ma praw do materiału, ale w myśl tego ustępu, nabywa prawa do odsprzedaży praw, których nie ma 🙂 To mniej więcej taki numer jak w przypadku Adolfa Cynjana znanego przedwojennego oszusta, który sprzedawał naiwniakom &#8222;kolumnę Zygmunta&#8221;. Abstrahując już od tego czy można sprzedać kolumnę Zygmunta, to Cynjan na pewno nie miał do niej praw. Podobnie TVN, ale oczywiście użytkownik zgadzając się z regulaminem, te prawa stacji oddaje.
 
