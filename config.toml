@@ -4,7 +4,7 @@ languageCode = "pl-pl"
 title = "A Hugo website"
 theme = "hugo-lithium-theme"
 googleAnalytics = ""
-disqusShortname = "sms"
+disqusShortname = "dziennikarz"
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 
 [permalinks]
