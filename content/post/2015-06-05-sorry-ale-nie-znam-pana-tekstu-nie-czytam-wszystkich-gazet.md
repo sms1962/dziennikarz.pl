@@ -12,8 +12,6 @@ categories:
 ---
 Ci co czytają mojego blogaska wiedzą, że piszę nieregularnie, a nieraz bardzo nieregularnie. Powód jest taki, że piszę wtedy gdy coś mnie zaskoczy: pozytywnie czy negatywnie&#8230; łat ewer.  Od dwóch dni zaskakuje mnie redaktor i redakcja w której znany dziennikarz opublikował felieton i nie ukrywam tego &#8211; tzw. środowisko dziennikarskie. Sprawa dotyczy rzeczy tak prostej i banalnej, że gdyby mi ktoś powiedział, że kiedyś będę o to kruszył kopie to bym normalnie nie uwierzył.  No i z tej bzdurki wyszła trochę prawda o tym jak działają media i, a głos zabrał nawet Prezydent elekt Andrzej Duda.
 
-<!--more-->
-
 No ale po kolei i chronologicznie bo kolejność ma tu znaczenie.
 
 Gdy już ucichły trochę echa wyborów prezydenckich na blogu [Boskamatka.pl][1] ukazał się tekst [Pierwsza Niewolnica RP][2]. Jego autorka, Anna Kowalczyk ( [@boska_matka][3])  w zgrabnym tekście naświetliła szokujący temat: Pierwsze Dama, podobnie jak i jej poprzedniczki nie ma prawa do składki zusowskiej (5 lat nieskładkowe do emerytury) z jednej strony i nie może pracować zawodowo z drugiej strony.  Ma za to zdecydowanie więcej obowiązków niż tylko jak ta obrazowo ujęła Kowalczyk &#8222;robić mężowi mielone&#8221;. Wypisz wymaluj niewolnica.
