@@ -1,0 +1,63 @@
+---
+title: Umarł Wordpress, niech żyje Hugo!
+author: sms
+date: '2017-06-28'
+slug: umnar-wordpress-niech-yje-hugo
+categories:
+  - Blogosfera
+tags:
+  - hugo
+---
+Blogi to kiedyś były fajne miejsca gdzie można było sie sporo dowiedzieć. Pisze były, bo autorzy więcej czasu poświęcali na to co mają do powiedzenia, niż na to jak to wygląda. Z czasem te proporcje się odwróciły. Nie bez winy jest tu rozwój narzędzi do publikowania w internecie, który sprawił, że blogaska może sobie dzisiaj założyć każdy. Aplikacje i serwisy do blogowania stały się wielkimi, skomplikowanymi kombajnami gdzie błędy i dziury są bezlitośnie wykorzystywane przez hackerów. W efekcie na przykład wszyscy, ktorzy posługują się popularnym WordPressem, sporo czasu muszą poświęcać na instalowanie łatek, nowych wersji itp. czynności, ktore niewiele mają wspólnego z przelewaniem na “papier” tego co mają mądrego do powiedzenia.
+
+Remedium miedzy innymi na te problemy są tzw. generatory stron statycznych (static website generator). Technologia znana od dawna, ale usprawniona, wykorzystująca rozwój standardów internetowych, od kilku lat zdobywa olbrzymią popularność. Takim generatorem jest właśnie Hugo na którym postawiłem tego blogaska. O tym dlaczego w dalszej części.
+
+Bloga, czy jak wolę mówić blogaska, mam ponad 10 lat. Przez cały ten okres mój stosunek do niego był zawsze taki sam: miało to być miejsce, gdzie sam, bez niczyich sugestii, mogę się wypowiadać. Mam ochotę to piszę, nie mam ochoty, to miesiącami milczę. Może nie jest to najlepsza strategia by zostać znanym “blogerę”, ale co tam.
+
+Przez cały ten czas używałem róznych narzedzi. Najczęściej był to oczywiście [WordPress](http://wordpress.com), na którym postawiłem blogaska dużo wcześniej zanim stało się to modne. Były też eksperymenty z bardzo przeze mnie lubianym Posterous czy popularnym, ale przeze mnie nielubianym :-) [Tumblr](http://tumblr.com).
+
+WordPress to doskonałe narzędzie, ale jak każde z wiekiem, traci trochę na blasku. Od kilku lat myślałem by go zmienić na coś innego. Powodów jest kilka. Najważniejsze to:
+
++ Używanie WordPressa zaczyna być loterią z punktu widzenia bezpieczeństwa. Tak się rozrósł i skomplikował, że w sposób naturalny, co chwilę pojawiają się i będą pojawiać dziury. Nie mam czasu tego wszystkiego śledzić.
+
++ Niby są dziesiątki tysięcy skórek, ale zawsze coś mi nie pasuje. Zrobienie własnej skórki czy dostosowanie już istniejących wymaga wiedzy i doświadczenia. Szkoda mi na to czasu.
+
++ Przez kilkanaście lat praktycznie nie wykorzystywałem podczas edycji nic innego niż: wytłuszczenie, kursywa, cytat, dodanie zdjęcia, osadzenie filmu czy tweeta. Większość funkcji Wordpressa, jego system ról i uprawnień jest mi po prostu niepotrzebne.
+
++ Koszty ponoszone za hosting nie są może zbyt duże, ale czy naprawdę muszę płacić za hosting?
+
++ Pisanie posta dla WordPressa wymaga albo edytora online w WP, albo aplikacji na smartfonie. Tymczasem spokojnie zwykły tekst mozna napisać na notepadzie.
+
++ Zmiana hostingu to koszt, głównie czasu. Trzeba skopiować bazę z postami, od nowa postawić WordPressa, wgrać stare posty i jeszcze poświęcić kilka godzin by pobieżnie sprawdzić czy wszystko działa oraz właściwie się zaimportowało. Kto ma na to czas?
+
+Wybrałem tylko kilka z powodów, dla których postanowiłem, że czas w końcu zrobić jakąś dobrą zmianę. I tak sobie od mniej więcej dwóch lat odkładałem kiedy ta "dobra zmiana" nastapi aż tu buum: hosting na którym miałem [Dziennikarz.pl](http://dziennikarz.pl) od września przestaje działać w Polsce. No to trzeba było coś zrobić :-)
+
+Pierwszy krok to wybór narzędzia. Jeśli nie WordPress to co? Po kilku dniach czytania i próbowania mój wybór padł na [Hugo](http://gohugo.com). 
+
+Jest to narzędzie, którego rozwój obserwuję mniej więcej od roku. Technicznie nazywa się to generator stron statycznych i na pierwszy rzut oka wydaje się być krokiem w tył w porównaniu do WordPressa. U źródeł popularności takich generatorów leży odwrotna niż w przypadku WordPressa filozofia. WordPress działa na serwerze i gdy wstukamy adres strony to, to co otrzumujemy w przeglądarce jest za każdym razem tworzone na serwerze. Pomijam tu różne cache, chodzi mi o zasadę działania. Generatory Stron Statycznych działają inaczej. Strony są wcześniej generowane i wyświetlane bezpośrednio internaucie gdy się z nią połączy. To drobna, ale z wielu punktów widzenia ważna różnica, bo dzięki niej strony stworzone przez generatory są o wiele szybsze i mniej "ważą". Są też bardziej “odporne” na dużą liczbę internautów. By się o tym przekonać wystarczy prosty test sieci w narzędziach programistycznych przeglądarki:
+
+???????????
+
+Po drugie nie ma logowania, systemu ról i uprawnień, bazy danych czyli wszystkiego tego, gdzie teoretycznie może się włamać zły “haker”. Generatory mają też tą zaletę, że teksty do nich pisze się w metajęzyku zwanym [Markdown](https://pl.wikipedia.org/wiki/Markdown). By go opanować, średnio inteligentna osoba, potrzebuje ok. 15 minut. W zamian możemy tworzyć teksty w uniwersalnym formacie, czyli takim, który można zamienić na praktycznie dowolny np. MS Word czy pdf. Jeden z najfajniejszych opisów tego języka znajdziecie na stronie [Daring Fireball](http://daringfireball.net/projects/markdown/).
+
+Jeśli już wiedziałem, że będzie to Generator Stron Statycznych, to powstało pytanie: który? 
+
+Od mniej więcej dwóch lat, kiedy ta technologia stała się popularna, stworzono ich co najmniej kilkanaście. Generalnie wszystkie działają na podobnej zasadzie i dlatego - przynajmniej dla mnie - ważne było by, jeśli zajdzie taka potrzeba i trzeba będzie coś do nich dorobić - np. fragment kodu, to aby napisane były w języku programowania o którym mam pojecie. Z tego względu odrzuciłem:
+
++ najpopularniejszy chyba [Jekyll](https://jekyllrb.com/) bo napisany jest w Ruby, który znam bardzo, bardzo słabo.
++ Mniej chętnie patrzyłem też na te, które są zrobione w JavaScripcie.
++ Zainteresował mnie za to i nie ukrywam, że od pierwszego spojrzenia ujął Hugo.
+
+Co prawda napisany jest w języku Go, w którym nie mam żadnego doświadczenia, ale do prostych zastosowań, a poważniejszych nie przewiduje, jest on tak prosty jak Python, więc myślę, że damy radę. Po za tym - nie ukrywam - że dałem się oczarować hasłu, które jest na jego stronie:
+
+> *"Make the Web Fun Again"*
+
+Dokładnie o to mi chodziło. Chcę mieć ten fan co kiedyś!
+
+Co dalej? Na razie przeniosłem posty, ale migracja wymaga dokładnego sprawdzenia. Szczególnie chodzi o migrację zdjęć. Ze wzgledu na czas, zastosowałem standardową skórkę. Na poczatku nie byłem z niej zadowolony, a szczególnie ze strony głównej składającej się z listy wpisów, ale z czasem... spodobał mi się taki układ. Jednak skórka wymaga kilku prac, głównie chodzi o czcionkę w której polskie znaki nie wyglądają najlepiej.
+
+Kilku znajomych prosiło mnie bym pokazał jak tworzy się bloga na Hugo, który dodatkowo - tak jak moja obecna wersja - jest na darmowym hostingu. Pewnie zamiast każdemu z osobna tłumaczyć, zrobię po prostu taki mini tutorial, tym bardziej, że mam domenę, która leży sobie odłogiem, a można by na jej przykładzie to pokazać.
+
+Jeśli macie jakieś pytania czy uwagi, to zapraszam w komentarzach.
+
+
