@@ -36,7 +36,7 @@ Pierwszy krok to wybór narzędzia. Jeśli nie WordPress to co? Po kilku dniach 
 
 Jest to narzędzie, którego rozwój obserwuję mniej więcej od roku. Technicznie nazywa się to generator stron statycznych i na pierwszy rzut oka wydaje się być krokiem w tył w porównaniu do WordPressa. U źródeł popularności takich generatorów leży odwrotna niż w przypadku WordPressa filozofia. WordPress działa na serwerze i gdy wstukamy adres strony to, to co otrzumujemy w przeglądarce jest za każdym razem tworzone na serwerze. Pomijam tu różne cache, chodzi mi o zasadę działania. Generatory Stron Statycznych działają inaczej. Strony są wcześniej generowane i wyświetlane bezpośrednio internaucie gdy się z nią połączy. To drobna, ale z wielu punktów widzenia ważna różnica, bo dzięki niej strony stworzone przez generatory są o wiele szybsze i mniej "ważą". Są też bardziej “odporne” na dużą liczbę internautów. By się o tym przekonać wystarczy prosty test sieci w narzędziach programistycznych przeglądarki:
 
-???????????
+![Wordpress](/img/word/dziennikarz-wordpress.png)
 
 Po drugie nie ma logowania, systemu ról i uprawnień, bazy danych czyli wszystkiego tego, gdzie teoretycznie może się włamać zły “haker”. Generatory mają też tą zaletę, że teksty do nich pisze się w metajęzyku zwanym [Markdown](https://pl.wikipedia.org/wiki/Markdown). By go opanować, średnio inteligentna osoba, potrzebuje ok. 15 minut. W zamian możemy tworzyć teksty w uniwersalnym formacie, czyli takim, który można zamienić na praktycznie dowolny np. MS Word czy pdf. Jeden z najfajniejszych opisów tego języka znajdziecie na stronie [Daring Fireball](http://daringfireball.net/projects/markdown/).
 
