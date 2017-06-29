@@ -3,7 +3,7 @@ relativeurls = true
 languageCode = "pl-pl"
 title = "A Hugo website"
 theme = "hugo-lithium-theme"
-googleAnalytics = ""
+googleAnalytics = "UA-73680-1"
 disqusShortname = "dziennikarz"
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 
@@ -19,7 +19,7 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
     url = "https://twitter.com/dziennikarz"
 
 [params]
-    description = "A website built through Hugo and blogdown."
+    description = "Strona zbudowana przez Hugo i blogdown."
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
