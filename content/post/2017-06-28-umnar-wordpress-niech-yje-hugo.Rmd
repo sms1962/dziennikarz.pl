@@ -10,7 +10,7 @@ tags:
 ---
 Blogi to były kiedyś fajne miejsca gdzie można było sie sporo dowiedzieć. Pisze były, bo autorzy więcej czasu poświęcali na to co mają do powiedzenia, niż na to jak to co napisali -  wygląda. Z czasem te proporcje się odwróciły. Nie bez winy jest tu rozwój narzędzi do publikowania w internecie, który sprawił, że blogaska może sobie dzisiaj założyć każdy. Aplikacje i serwisy do blogowania stały się wielkimi, skomplikowanymi kombajnami gdzie błędy i dziury są bezlitośnie wykorzystywane przez hackerów. W efekcie na przykład wszyscy, ktorzy posługują się popularnym WordPressem, sporo czasu muszą poświęcać na instalowanie łatek, nowych wersji itp. czynności, ktore niewiele mają wspólnego z "przelewaniem" na papier tego co mają mądrego do powiedzenia.
 
-Remedium, miedzy innymi, na te problemy są tzw. generatory stron statycznych (static website generator). Technologia znana od dawna, ale usprawniona i wykorzystująca rozwój standardów internetowych, od kilku lat zdobywa coraz większą  popularność. Takim generatorem jest właśnie [Hugo](http://gohugo.com) na którym postawiłem tego blogaska. A dlaczego to o tym w dalszej części.
+Remedium, miedzy innymi, na te problemy są tzw. generatory stron statycznych (static website generator). Technologia znana od dawna, ale usprawniona i wykorzystująca rozwój standardów internetowych, od kilku lat zdobywa coraz większą  popularność. Takim generatorem jest właśnie [Hugo](http://gohugo.io) na którym postawiłem tego blogaska. A dlaczego to o tym w dalszej części.
 
 ***
 
@@ -65,9 +65,11 @@ Co prawda napisany jest w języku Go, w którym nie mam żadnego doświadczenia,
 
 Dokładnie o to mi chodziło. Chcę mieć ten fan co kiedyś!
 
-Co dalej? Na razie przeniosłem posty, ale migracja wymaga dokładnego sprawdzenia. Szczególnie chodzi o migrację zdjęć. Ze wzgledu na czas, zastosowałem standardową skórkę. Na poczatku nie byłem z niej zadowolony, a szczególnie ze strony głównej składającej się z listy wpisów, ale z czasem... spodobał mi się taki układ. Jednak skórka wymaga kilku prac, głównie chodzi o czcionkę w której polskie znaki nie wyglądają najlepiej.
+Co dalej? Na razie przeniosłem posty, ale migracja wymaga dokładnego sprawdzenia. Szczególnie chodzi o zdjęcia i inne pliki graficzne oraz kilka stron np. ranking dziennikarzy na Twitterze.
 
-Kilku znajomych prosiło mnie bym pokazał jak tworzy się bloga na Hugo, który dodatkowo - tak jak moja obecna wersja - jest na darmowym hostingu. Pewnie zamiast każdemu z osobna tłumaczyć, zrobię po prostu taki mini tutorial, tym bardziej, że mam domenę, która leży sobie odłogiem, a można by na jej przykładzie to pokazać.
+Ze wzgledu na czas, zastosowałem standardową skórkę. Na poczatku nie byłem z niej zadowolony, a szczególnie ze strony głównej składającej się z listy wpisów, ale z czasem... spodobał mi się taki układ. Jednak skórka wymaga kilku prac, głównie chodzi o czcionkę w której polskie znaki nie wyglądają najlepiej.
+
+Kilku znajomych prosiło mnie bym pokazał jak tworzy się bloga na Hugo, który dodatkowo - tak jak moja obecna wersja - jest na darmowym hostingu. Pewnie zamiast każdemu z osobna tłumaczyć, zrobię po prostu taki mini tutorial, tym bardziej, że mam domenę, która leży sobie odłogiem, a można by na jej przykładzie to i kilka innych rzeczy pokazać.
 
 Jeśli macie jakieś pytania czy uwagi, to zapraszam w komentarzach.
 
