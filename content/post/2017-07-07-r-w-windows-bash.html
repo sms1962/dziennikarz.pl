@@ -15,8 +15,9 @@ tags: []
 <li>jakie słowa padały najczęściej w przemówieniu Trumpa w Warszawie</li>
 <li>jakich tzw. bigramów albo trigramów używał prezydent Stanów Zjednoczonych</li>
 </ul>
-<p>Najczęściej do tego typu analiz używałem R i pakietu tm. To - jak się opanuje - dość fajne narzędzie, a przede wszystkim coś w rodzaju standardu w text mining. Co za tym idzie, sporo ludzi pisze o tym czy potrafi pomóc np. na <a href="https://stackoverflow.com/questions/tagged/tm">StackOverflow.</a> Tym razem jednak postanowiłem użyć innego narzędzia: pakietu <a href="https://cran.r-project.org/web/packages/tidytext/index.html">Tidytext</a>. Przypomniałem sobie, że dobrych kilka miesięcy temu, a może nawet jeszcze w zeszłym roku, autorzy tekgo pakietu Julia Silge i David Robinson opublikowali książkę <a href="http://tidytextmining.com/index.html">“Text Mining with R. A Tidy Approach”</a> na temat analizy tekstu, będącą niejako manualem do ich pakietu, a przy okazji fajną lekcją analizy tekstu. Jako, że przeczytałem wcześniej spore fragmenty tej ksiązki, to mniej więcej orientowałem się, że zadanie, ktore sobie postawiłem, można przy pomocy tidytext rozwiązać w kilku linijkach kodu.</p>
-<p>Zadanie numer 1, czyli jakie słowa padły w przemówieniu Trumpa zajęło mi jakieś circa 1 minutę :- ) bo to tyle co poniżej kodu:</p>
+<p>Najczęściej do takich analiz używałem R i pakietu tm. To - jak się opanuje - dość fajne narzędzie, a przede wszystkim coś w rodzaju standardu w text mining. Co za tym idzie, sporo ludzi pisze o tm, czy potrafi pomóc np. na <a href="https://stackoverflow.com/questions/tagged/tm">StackOverflow.</a>.</p>
+<p>Tym razem jednak postanowiłem użyć innego narzędzia: pakietu <a href="https://cran.r-project.org/web/packages/tidytext/index.html">Tidytext</a>. Przypomniałem sobie, że dobrych kilka miesięcy temu, a może nawet jeszcze w zeszłym roku, autorzy tekgo pakietu Julia Silge i David Robinson opublikowali książkę <a href="http://tidytextmining.com/index.html">“Text Mining with R. A Tidy Approach”</a>, będącą niejako manualem do ich pakietu, a przy okazji fajną lekcją analizy tekstu. Jako, że przeczytałem wcześniej spore fragmenty tej ksiązki, to mniej więcej orientowałem się, że zadanie, ktore sobie postawiłem, można przy pomocy tidytext rozwiązać i to w kilku linijkach kodu.</p>
+<p>Zadanie numer 1, czyli jakie słowa padły w przemówieniu Trumpa zajęło mi jakieś circa 1 minutę :- ) bo to tyle co napisanie tych kilku linijek kodu:</p>
 <pre><code>library(dplyr)
 library(tidytext)
 
@@ -31,28 +32,31 @@ trump_slowa &lt;- trump %&gt;%
   anti_join(pl_stop_words) %&gt;%
   count(word, sort=T) %&gt;%</code></pre>
 <p>Pyk, pyk plus biblioteka do chmurki słów i już wiadomo.</p>
-<p>Zachęcony tym zabrałem się za bigramy. Unigramy to pojedyncze słowa tekstu. Funkcja unnest_tokens() bierze tekst, dzieli go na pojedyncze słowa i liczy częstotliwość wysteopujących słów. Bigramy są to dwa sąsiadujące ze sobą słowa. Trigramy to trzy sąsiadujące słowa i tak dalej. Ogólnie nazywa się ngrams - czyli ngramami.</p>
-<p>Kod do wyodrębnienia bigramów wykorzystuje tę samą funkcję unnest_tokens() tylko nieco inne podaje się paramtery. No i w inny trochę sposób usuwa się tzw. stopwords czyli często wystepujące słowa, ktore nic nie wnoszą do analizy np. “albo”, “i” etc. Wydawało się, że pójdzie jak z płatka i tak było do momentu, gdy obejrzałem na ekranie wynik. Znaczki zamiast polskich znaków! No to jest problem, ktory tygryski lubią najbardziej bo:</p>
+<p><img src="/img/trump_slowa.png" alt="Słowa, których najczęściej używał Trump w Warszawie" /> Zachęcony tym zabrałem się za bigramy. Unigramy to pojedyncze słowa tekstu. Funkcja unnest_tokens() bierze tekst, dzieli go na pojedyncze słowa i liczy częstotliwość wysteopujących słów. Bigramy są to dwa sąsiadujące ze sobą słowa. Trigramy to trzy sąsiadujące słowa i tak dalej. Ogólnie nazywa się ngrams - czyli ngramami.</p>
+<p>Kod do wyodrębnienia bigramów wykorzystuje tę samą funkcję unnest_tokens() tylko podaje się nieco inne paramtery. No i w inny trochę sposób usuwa się tzw. stopwords czyli często wystepujące słowa, ktore nic nie wnoszą do analizy np. “albo”, “i” etc. Wydawało się, że pójdzie jak z płatka i tak było do momentu, gdy obejrzałem na ekranie wynik. Znaczki zamiast polskich znaków!</p>
+<p>No to jest problem, ktory tygryski lubią najbardziej bo:</p>
 <ul>
 <li>używam tego samego pliku tekstowego</li>
 <li>wczytuję go tą samą funkcją</li>
 <li>używam do bigramów tej samej funkcji co do unigramów</li>
 <li>nie ma żadnych błędów</li>
 </ul>
-<p>W pierwszym przypadku polskie litery są poprawnie, a w drugim nie. Dopóki wszystko z R robiłem na linuksie, to problem nie istniał. Niestety przymusowa przesiadka na Windows, przypomniała mi, że niby wszyscy używają UTF-8, ale gdy masz Windows, to wiadomo, że będzie inaczej.</p>
-<p>Pierwszy pomysł? Zmienię na moment wykonywania funkcji liczącej bigramy, locales z polskich 1250 na np. angielskie. Niestety, efekt żaden. Dzisiaj podejrzewam, że być może to dobry trop, tylko zmiana locales musi być zrobiona podczas uruchamiania R, a nie w czasie trwania sesji. Drugi pomysł? Oczywiście zrobić sobie proste środowisko Linuksa, które w razie potrzeby mógłbym szybko wykorzystać. Tu również jest kilka ścieżek:</p>
+<p>W pierwszym przypadku polskie litery są poprawnie, a w drugim nie.</p>
+<p>Dopóki wszystko z R robiłem na linuksie, to problem nie istniał. Niestety przymusowa przesiadka na Windows, przypomniała mi, że niby wszyscy używają UTF-8, ale gdy masz Windows, to wiadomo, że będzie inaczej.</p>
+<p>Pierwszy pomysł? Zmienię na moment wykonywania funkcji liczącej bigramy, locales z polskich 1250 na np. angielskie. Niestety, efekt żaden. Dzisiaj podejrzewam, że być może to dobry trop, tylko zmiana locales musi być zrobiona podczas uruchamiania R, a nie w czasie trwania sesji.</p>
+<p>Drugi pomysł? Oczywiście zrobić sobie proste środowisko Linuksa, które w razie potrzeby mógłbym szybko wykorzystać. Tu również jest kilka ścieżek:</p>
 <ul>
 <li>Amazon AWS,</li>
 <li>Linux współdzielony z Windows na jednym dysku</li>
 <li>powłoka Bash w Windows 10</li>
 </ul>
-<p>Pierwsze dwa odrzuciłem, bo trochę przy tym roboty. Trzecie to trochę dla mnie niewiadoma, ale kuszące, bo na tym samym komputerze, bez żadnego ponownego uruchamiania komputera, mam pod ręką linuksa. Trochę jak na Amazon AWS, tylko na swoim kompie :-)</p>
+<p>Pierwsze dwa odrzuciłem, bo trochę przy tym roboty. Trzecie rozwiązanie to trochę dla mnie niewiadoma, ale kusząca, bo na tym samym komputerze, bez ponownego uruchamiania komputera, mam pod ręką linuksa. Trochę jak na Amazon AWS, tylko na swoim kompie :-)</p>
 <p>Sama procedura jest prosta i nie zabiera więcej niż 15 minut:</p>
 <ul>
 <li>włączenie funkcji developerskich w panelu sterowania</li>
 <li>włączenie “podsystem Windows dla systemu Linux”</li>
 </ul>
-<p>Potem już z górki, bo mamy nieco okrojony, ale jednak Ubuntu. Co prawda nie ma graficznego interfejsu (i coś mi mówi, że nie będzie :-)), a wiec nie użyjemy RStudio, no ale do incydentalnej pracy z R to nie jest jakiś specjalny problem. Co fajnego to, że z jednej strony mam linuksową przestrzeń dyskową, ale z drugiej jest też dostęp do dysku C w Windows. Dzięki temu bez żadnej gimnastyki mogę korzystać z plików w obu systemach. Instalacja R i pakietów taka sama jak w jakimkolwiek linuksie.</p>
+<p>Potem już z górki, bo mamy nieco okrojony, ale jednak Ubuntu. Co prawda nie ma graficznego interfejsu (i coś mi mówi, że nie będzie :-)), a wiec nie użyjemy RStudio, no ale do incydentalnej pracy z R to nie jest jakiś specjalny problem. Co fajnego to to, że z jednej strony mam linuksową przestrzeń dyskową, ale z drugiej jest też dostęp do dysku w Windows. Dzięki temu bez żadnej gimnastyki mogę korzystać z plików w obu systemach. Instalacja R i pakietów taka sama jak w jakimkolwiek linuksie.</p>
 <p>Efekt? Poniżej :-)</p>
 <div class="figure">
 <img src="/img/bash_R_windows.png" alt="R uruchomiony w bashu na…Windows 10" />
