@@ -23,8 +23,8 @@ tags: []
 <hr />
 <p>Ten przypadek uzmysłowił mi, jak dramatycznie zmienił się mój sposób pisania w porównaniu do tego jak to było jeszcze 5 lat temu. Wszystko to za sprawą metajęzyka <a href="https://pl.wikipedia.org/wiki/Markdown">Markdown</a>. Wiedziałem, że strasznie ułatwił mi pisanie tekstów z wykorzystaniem danych, ale nie przypuszczałem, że używanie go przez ostatnie 5 lat, aż tak wpłynie na naturalną - w moim przypadku - czynność, jaką jest pisanie.</p>
 <p>Zacznijmy jednak od podstaw, bo pewnie nie wszyscy wiedzą co to do licha jest ten Markdown? To język znaczników używanych do formatowania tekstu czyli trochę coś jak HTML, tylko o wiele prostszy. Można go stosować w dowolnym edytorze tekstów, który potrafi zapisywać pliki w zwykłym formacie tekstowym. Charakteryzuje go to, że znaczniki są banalnie proste. Na przykład by zastosować kursywę wystarczy wyraz czy fragment tekstu rozpocząć i zakończyć znakiem “*“. W podobny sposób zastosujemy wytłuszczenie tekstu używając w tym przypadku dwóch znaków”**“. Poniżej jak to wygląda w praktyce:</p>
-<p>“*tekst pochylony*” <em>tekst pochylony</em><br />
-“**tekst wytłuszczony**” <strong>tekst wytłuszczony</strong></p>
+<p>*tekst pochylony* <em>tekst pochylony</em><br />
+**tekst wytłuszczony** <strong>tekst wytłuszczony</strong></p>
 <p>Takich języków opartych na znaczniki jest sporo, ale potęga Markdown bierze się z dwóch elementów: prostoty i możliwości zamiany tekstu w formacie Markdown na inne formaty. Jego zalety fajnie można przedstawić na przykładzie wykorzystania tego języka w nauce. Nawiasem mówiąc, naukowcy to - oprócz geeków - pierwsze środowisko, w którym Markdown stał się de facto standardem.</p>
 <p>Dlaczego naukowcy? Bo wydawnictwa publikujące artykuły naukowe i książki, najczęściej żądają, by były one przesłane w formacie <a href="https://pl.wikipedia.org/wiki/TeX">TeX</a>. To system składu komputerowego, trudny i wymagający wielomiesięcznej nauki, by go opanować. Tymczasem naukowcy powinni zajmować się pracą naukową, a nie poznawaniem meandrów Tex-a, który de facto jest im potrzebny jedynie po to, by spisane efekty swojej pracy wysłać do wydawnictwa. No i tu niezwykle pomocny jest Markdown bo dokument napisany w tym języku można w prosty sposób zamienić na praktycznie dowolny format tekstów komputerowych, począwszy od zwykłego txt, pdf a skończywszy na doc czy TeX. Olbrzymie znaczenie ma też składnia Markdown. Jest ona tak prosta, że każda osoba o inteligencji większej nieco tylko niż pierwotniak, jest ją w stanie opanować w ciągu 15 minut.</p>
 <p>Kto wie czy jednak ważniejsze od prostej składni i bezproblemowej konwersji na dowolny format nie jest możliwość wstawiania do dokumentów Markdown fragmentów kodu popularnych języków programowania jak np. <a href="http://python.org">Python</a> czy <a href="https://www.r-project.org/">R</a>. Faktem jest, że ta funkcja nie występuje w standardzie języka, ale w jego rozszerzeniach, ale opanowanie jej jest równie proste jak innych znaczników. Dzięki możliwości wstawienia i co bardzo ważne uruchomienia kodu w dokumencie Markdown, tworzymy dokument o zupełnie nowej jakości. Kod może pobierać z dysku dane i prezentować je w formie tabeli, rysować dowolny wykres czy wykonywać skomplikowane obliczenia. Na koniec raz przygotowany dokument możemy zapisać w formie pdf czy… strony internetowej HTML. Ponieważ bardzo często z tego korzystam, to pokaże poniżej jak to wygląda w praktyce.</p>
@@ -312,7 +312,7 @@ library(dplyr)
 mtcars %&gt;%
   ggplot(aes(x = wt, y =mpg)) + geom_point() +
   ggtitle(label = &quot;Czy waga auta wpływa na spalanie benzyny?&quot;) +
-  xlab(label = &quot;Waga samochodu&quot;) +
+  xlab(label = &quot;Waga samochodu (1000 lbs)&quot;) +
   ylab(label = &quot;liczba mil przejechanych na 1 galonie&quot;) +
   theme_minimal()</code></pre>
 <p><img src="/post/2017-07-15-dlaczego-edytor-tekstow-zaczyna-mi-przeszkadzac_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>

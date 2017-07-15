@@ -15,8 +15,8 @@ Ten przypadek uzmysłowił mi, jak dramatycznie zmienił się mój sposób pisan
 Zacznijmy jednak od podstaw, bo pewnie nie wszyscy wiedzą co to do licha jest ten Markdown? To język znaczników używanych do formatowania tekstu czyli trochę coś jak HTML, tylko o wiele prostszy. Można go stosować w dowolnym edytorze tekstów, który potrafi zapisywać pliki w zwykłym formacie tekstowym. Charakteryzuje go to, że znaczniki są banalnie proste. Na przykład by zastosować kursywę wystarczy wyraz czy fragment tekstu rozpocząć i zakończyć znakiem  "*". 
 W podobny sposób zastosujemy wytłuszczenie tekstu używając w tym przypadku dwóch znaków "**". Poniżej jak to wygląda w praktyce:
 
-"\*tekst pochylony\*" *tekst pochylony*  
-"\*\*tekst wytłuszczony\*\*" **tekst wytłuszczony**  
+\*tekst pochylony\* *tekst pochylony*  
+\*\*tekst wytłuszczony\*\* **tekst wytłuszczony**  
 
 Takich języków opartych na znaczniki jest sporo, ale potęga Markdown bierze się z dwóch elementów: prostoty i możliwości zamiany tekstu w formacie Markdown na inne formaty. Jego zalety fajnie można przedstawić na przykładzie wykorzystania tego języka w nauce. Nawiasem mówiąc, naukowcy to - oprócz geeków - pierwsze środowisko, w którym  Markdown stał się de facto standardem.
 
@@ -43,7 +43,7 @@ library(dplyr)
 mtcars %>%
   ggplot(aes(x = wt, y =mpg)) + geom_point() +
   ggtitle(label = "Czy waga auta wpływa na spalanie benzyny?") +
-  xlab(label = "Waga samochodu") +
+  xlab(label = "Waga samochodu (1000 lbs)") +
   ylab(label = "liczba mil przejechanych na 1 galonie") +
   theme_minimal()
 ```
