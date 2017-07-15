@@ -1,0 +1,66 @@
+---
+title: Dlaczego edytor tekstów zaczyna mi przeszkadzać?
+author: sms
+date: '2017-07-15'
+slug: dlaczego-edytor-tekstow-zaczyna-mi-przeszkadzac
+categories: []
+tags: []
+---
+ Kilka dni temu zaskoczyła mnie sytuacja, która stała się asumptem do napisania tej notki. Pisząc tekst w Wordzie chciałem wstawić do niego infografikę. Zamyślony nad tekstem zacząłem wpisywać "```{r wykres}"... i wtedy nastąpiło olśnienie: głupku, przecież w Wordzie nie możesz wstawić fragmentu kodu! Jedynym sposobem jest XX wieczna metody wczytania z dysku pliku graficznego.
+
+***
+
+Ten przypadek uzmysłowił mi, jak dramatycznie zmienił się mój sposób pisania w porównaniu do tego jak to było jeszcze 5 lat temu. Wszystko to za sprawą metajęzyka [Markdown](https://pl.wikipedia.org/wiki/Markdown). Wiedziałem, że strasznie ułatwił mi pisanie tekstów z wykorzystaniem danych, ale nie przypuszczałem, że używanie go przez ostatnie 5 lat, aż tak wpłynie na naturalną - w moim przypadku - czynność, jaką jest pisanie. 
+
+Zacznijmy jednak od podstaw, bo pewnie nie wszyscy wiedzą co to do licha jest ten Markdown? To język znaczników używanych do formatowania tekstu czyli trochę coś jak HTML, tylko o wiele prostszy. Można go stosować w dowolnym edytorze tekstów, który potrafi zapisywać pliki w zwykłym formacie tekstowym. Charakteryzuje go to, że znaczniki są banalnie proste. Na przykład by zastosować kursywę wystarczy wyraz czy fragment tekstu rozpocząć i zakończyć znakiem  "*". 
+W podobny sposób zastosujemy wytłuszczenie tekstu używając w tym przypadku dwóch znaków "**". Poniżej jak to wygląda w praktyce:
+
+"\*tekst pochylony\*" *tekst pochylony*  
+"\*\*tekst wytłuszczony\*\*" **tekst wytłuszczony**  
+
+Takich języków opartych na znaczniki jest sporo, ale potęga Markdown bierze się z dwóch elementów: prostoty i możliwości zamiany tekstu w formacie Markdown na inne formaty. Jego zalety fajnie można przedstawić na przykładzie wykorzystania tego języka w nauce. Nawiasem mówiąc, naukowcy to - oprócz geeków - pierwsze środowisko, w którym  Markdown stał się de facto standardem.
+
+Dlaczego naukowcy? Bo wydawnictwa publikujące artykuły naukowe i książki, najczęściej żądają, by były one przesłane w formacie [TeX](https://pl.wikipedia.org/wiki/TeX). To system składu komputerowego, trudny i wymagający wielomiesięcznej nauki, by go opanować. Tymczasem naukowcy powinni zajmować się pracą naukową, a nie poznawaniem meandrów Tex-a, który de facto jest im potrzebny jedynie po to, by spisane efekty swojej pracy wysłać do wydawnictwa. No i tu niezwykle pomocny jest Markdown bo dokument napisany w tym języku można w prosty sposób zamienić na praktycznie dowolny format tekstów komputerowych, począwszy od zwykłego txt, pdf a skończywszy na doc czy TeX. Olbrzymie znaczenie ma też składnia Markdown. Jest ona tak prosta, że każda osoba o inteligencji większej nieco tylko niż pierwotniak, jest ją w stanie opanować w ciągu 15 minut.  
+
+Kto wie czy jednak ważniejsze od prostej składni i bezproblemowej konwersji na dowolny format nie jest możliwość  wstawiania do dokumentów Markdown fragmentów kodu popularnych języków programowania jak np. [Python](http://python.org) czy [R](https://www.r-project.org/). Faktem jest, że ta funkcja nie występuje w standardzie języka, ale w jego rozszerzeniach, ale opanowanie jej jest równie proste jak innych znaczników. Dzięki możliwości wstawienia i co bardzo ważne uruchomienia kodu w dokumencie Markdown, tworzymy dokument o zupełnie nowej jakości. Kod może pobierać z dysku dane i prezentować je w formie tabeli, rysować dowolny wykres czy wykonywać skomplikowane obliczenia. Na koniec raz przygotowany dokument możemy zapisać w formie pdf czy... strony internetowej HTML. Ponieważ bardzo często z tego korzystam, to pokaże poniżej jak to wygląda w praktyce.
+
+***  
+Dane z jakimi mam najczęściej do czynienia są w formie tabeli. Podobnie jak w arkuszu kalkulacyjnym mają one kolumny (najczęściej z nazwami) i wiersze w których znajdują się wartości. Wiersze też mogą mieć nazwy. Przykładem prezentacji danych w formie tabeli jest **mtcars** popularny zbiór danych o różnych samochodach zawierający dane o `r nrow(mtcars)` samochodach wraz z różnymi, wybranymi, parametrami każdego z nich.
+
+Kod poniżej, który zwróćcie uwagę, znajduje się w moim wpisie, wygląda następująco:
+
+```{r}
+library(knitr) # wczytanie biblioteki
+data("mtcars") # baza mtcars
+kable(head(mtcars),format = "html") # wyświetl dane z bazy mtcars w formie tabeli
+```
+Efektem tego krótkiego kodu jest pięć pierwszych pozycji tabeli **mtcars** zawierającej parametry `r nrow(mtcars)` rożnych samochodów. Dwa z nich: **mpg** (spalanie wyrażone w galonach na mile) oraz **wt** (ciężar samochodu)  wykorzystam do zrobienia szybkiego wykresu. Oczywiście bezpośrednio w moim wpisie!
+
+```{r message=FALSE}
+library(ggplot2) 
+library(dplyr) 
+
+mtcars %>%
+  ggplot(aes(x = wt, y =mpg)) + geom_point() +
+  ggtitle(label = "Czy waga auta wpływa na spalanie benzyny?") +
+  xlab(label = "Waga samochodu") +
+  ylab(label = "liczba mil przejechanych na 1 galonie") +
+  theme_minimal()
+```
+
+Z wykresu widać rzecz w gruncie rzeczy oczywistą: że im cięższy samochód, tym mniej mil przejedzie na jednym galonie benzyny :-).
+
+Wykres czy tabela widoczne w tekście podczas pisania, to rzecz, która strasznie przyśpiesza pracę. Nie muszę się odrywać od pisania i przełączać do innego programu by obejrzeć wykres czy jego detale. Mam to wszystko na jednym ekranie, powyżej tekstu, który piszę. Ponieważ kod tworzący wykres jest w moim tekście, to mogę go dowolnie zmieniać by np. zmodyfikować wykres, albo przedstawić na nim inne dane. No i co też niezwykle ważne: mam od razu gotową grafikę do tekstu! 
+
+Inny przykład: wyobraźmy sobie, że piszę krótką notkę o [Placu Centralnym w Nowej Hucie](https://pl.wikipedia.org/wiki/Plac_Centralny_im._Ronalda_Reagana_w_Krakowie) i chciałbym aby w tekście pojawiła się mapka pokazująca gdzie w Krakowie dokładnie się znajduje. Kilka lat temu uruchomiłbym Google Maps, wyświetlił na mapie Plac Centralny i zrobił zrzut ekranu. W efekcie dostałbym plik graficzny z którym niewiele już mogę zrobić. Teraz wpisując dosłownie 4 linijki kodu mam mapę, którą dodatkowo czytelnik może dowolnie powiększyć czy pomniejszyć. Zobaczcie poniżej (standardowo mapa oparta jest na podkładzie Open Street Maps, ale zmiana na Google Maps, to naprawdę przysłowiowa betka).
+
+```{r}
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  setView(lng=20.037144, lat=50.071985, zoom = 16)
+```
+
+Taką mapę mogę dowolnie wzbogacać np. zaznaczając punkty (markery), które po kliknięciu, wyświetlają wskazaną przeze mnie informację. 
+
+Prawda, że #wpytkę? 
