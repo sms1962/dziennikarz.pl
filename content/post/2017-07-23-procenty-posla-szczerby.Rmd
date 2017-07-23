@@ -1,0 +1,94 @@
+---
+title: Procenty posła Szczerby
+author: sms
+date: '2017-07-23'
+slug: procenty-posla-szczerby
+categories:
+  - statystyka
+tags:
+  - wybory
+---
+
+Jest takie stare - nie wiem czy polskie - powiedzenie: nie wywołuj wilka z lasu. Idealnie pasuje mi ono do posła Michała Szczerby, który na Twitterze napisał:
+
+{{< tweet 888829132884385793 >}}
+
+...i wywołał wilka, czyli mnie :-)
+
+Kuknąłem na [wyniki wyborów do Sejmu z 2015 roku](http://parlament2015.pkw.gov.pl/349_Wyniki_Sejm) by przekonać się co to za mocarz, który poucza innych. Poseł Szczerba Michał kandydował w 19, dodajmy, najliczniejszym okręgu.
+
+Najpierw pyk, pyk, zapisałem wyniki wyborów na dysku, bo przecież odrobinkę się nimi pobawimy.
+
+```{r message= FALSE, echo=FALSE}
+library(dplyr, quietly = TRUE)
+library(tidyverse, quietly = TRUE)
+library(knitr, quietly = TRUE)
+
+poslowie_2015 <- readRDS("poslowie_2015.RDS")
+```
+Dane zawierają te same zmienne (kolumny), które znajdziemy na stronach wyników wyborów w Państwowej Komisji Wyborczej.
+
+```{r echo=FALSE}
+glimpse(poslowie_2015) 
+```
+Na początek sprawdzimy ile procent głosów zdobył nasz bohater? By lepiej można było wyświetlić dane, z tabeli zostawimy jedynie trzy zmienne (kolumny): 
+- imię i nazwisko posła
+- procent głosów jaki otrzymał
+- liczbę głosów
+
+```{r echo=FALSE}
+poslowie_2015 %>% 
+  select(imie_nazwisko, procent, liczba_glosow) %>%
+  filter(imie_nazwisko == "Michał SZCZERBA")
+```
+Hmm, na kandydata Michała Szczerbę oddało swój głos 4 tys. 919 wyborców co stanowi **0.45 procent**  głosów w okręgu wyborczym w którym startował!
+
+Smaczku dodaje fakt, że okręg 19, to największy w Polsce okręg wyborczy, zwany przez zapewne zawistnych -  Lemingradem. Wyborcy popierają tam głównie Platformę Obywatelską, której przedstawicielem jest poseł Szczerba. 
+W wyborach w 2015 roku uprawnionych do głosowania w okręgu 19 było **1 mln 561 tysięcy 289 osób** z czego udział w wyborach wzięło i oddało ważny głos **1 mln 95 tysięcy 215** obywateli RP. Frekwencja - 70,80 procent była jedną z najwyższych w kraju. Startując w takim miejscu, Michał Szczerba zdobywa **0.45 procent** głosów! 
+
+Mam podejrzenie, że gdyby startował koń o imieniu [Bucefał](https://pl.wikipedia.org/wiki/Bucefa%C5%82), to mógłby  zdobyć tyle samo głosów :-)
+
+Zaraz, zaraz, no ale może inni kandydaci, też tak mieli? Może jest jakaś specyfika tego okręgu, że na kandydatów oddawane jest tyle głosów, że jakby jeden z drugim poprosił na fejsie swoich znajomych by na niego głosowali, to pewnie uzyskałby podobny wynik? 
+
+Mamy dane, to możemy zobaczyć co w nich jest. Obejrzyjmy wyniki z okręgu 19. 
+
+Poniżej ranking według procentu poparcia.
+
+```{r echo=F}
+okreg19 <- poslowie_2015 %>%
+  select(nr_okregu, imie_nazwisko, procent) %>%
+  filter(nr_okregu == 19) %>%
+  arrange(desc(procent))
+
+```
+
+```{r echo=F}
+library(ggplot2)
+p <- ggplot(data=okreg19, aes(x=reorder(imie_nazwisko,procent), y=procent, fill="Red"))
+p <- p + geom_bar(stat="identity") + 
+  coord_flip() +
+  ggtitle("Wyniki wyborów do Sejmu w okręgu 19","Wyniki uwzględniają jedynie tych kandydatów, którzy zostali wybrani") +
+  xlab("Procent poparcia") +
+  ylab("Imię i nazwisko kandydata") +
+  theme_minimal() +
+  theme(legend.position="none")
+p
+```
+
+Wynik nie powinien nikogo, kto zna polską ordynację wyborczą, zaskakiwać. Premiuje ona duże partie, których liderzy są końmi pociągowymi dla innych kandydatów. W okręgu 19 (Warszawa) jest to szczególnie widoczne, bo tu startowali najwięksi ówcześni adwersarze czyli Ewa Kopacz - lider Platformy Obywatelskiej i Jarosław Kaczyński - lider Prawa i Sprawiedliwości. Oczywiście miało to spory wpływ na wyniki pozostałych kandydatów, bo wyborcy nie chcąc "marnować" głosu, oddają go na pewniaków. Można zatem powiedzieć, że kandydat Szczerba uzyskałby więcej głosów, gdyby startował np. w innym okręgu. 
+
+Wiemy już, że trochę nie z własnej winy, Michał Szczerba uzyskał - na tle innych - wynik raczej w końcówce tabeli w okręgu gdzie startował. Popatrzmy jeszcze z innej strony: jak nasz bohater wypada na tle innych kandydatów w całej Polsce. Może te 4 tysiące głosów to nie jest tak mało?
+
+```{r echo=FALSE}
+poslowie_2015 %>%
+  select(imie_nazwisko, procent, liczba_glosow) %>%
+  mutate(ranking = row_number(desc(procent))) %>%
+  filter(imie_nazwisko == "Michał SZCZERBA")
+```
+
+No cóż, nie da się ukryć, że tu wynik Michała Szczerby jest jeszcze słabszy. Odwróć tabelę i Michał Szczerba (prawie) na czele. Dokładnie na 450 miejscu w Polsce.
+
+Biorąc to pod uwagę można - parafrazując słynne zdanie prezydenta Francji Jacka Chiraca - powiedzieć, że poseł Michał Szczerba **stracił bardzo dobrą okazję, by siedzieć cicho**. 
+
+Przynajmniej w kwestii procentów poparcia.
+

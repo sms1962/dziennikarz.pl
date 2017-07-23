@@ -1,0 +1,49 @@
+---
+title: Procenty posła Szczerby
+author: sms
+date: '2017-07-23'
+slug: procenty-posla-szczerby
+categories:
+  - statystyka
+tags:
+  - wybory
+---
+
+
+
+<p>Jest takie stare - nie wiem czy polskie - powiedzenie: nie wywołuj wilka z lasu. Idealnie pasuje mi ono do posła Michała Szczerby, który na Twitterze napisał:</p>
+<p>{{&lt; tweet 888829132884385793 &gt;}}</p>
+<p>…i wywołał wilka, czyli mnie :-)</p>
+<p>Kuknąłem na <a href="http://parlament2015.pkw.gov.pl/349_Wyniki_Sejm">wyniki wyborów do Sejmu z 2015 roku</a> by przekonać się co to za mocarz, który poucza innych. Poseł Szczerba Michał kandydował w 19, dodajmy, najliczniejszym okręgu.</p>
+<p>Najpierw pyk, pyk, zapisałem wyniki wyborów na dysku, bo przecież odrobinkę się nimi pobawimy.</p>
+<p>Dane zawierają te same zmienne (kolumny), które znajdziemy na stronach wyników wyborów w Państwowej Komisji Wyborczej.</p>
+<pre><code>## Observations: 460
+## Variables: 7
+## $ nr_okregu         &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2,...
+## $ nr_listy          &lt;dbl&gt; 1, 1, 1, 1, 1, 2, 2, 2, 2, 7, 8, 1, 1, 1, 2,...
+## $ pozycja_na_liscie &lt;dbl&gt; 1, 2, 3, 4, 5, 1, 2, 6, 8, 1, 1, 1, 2, 3, 1,...
+## $ komitet           &lt;chr&gt; &quot;Komitet Wyborczy Prawo i Sprawiedliwość&quot;, &quot;...
+## $ imie_nazwisko     &lt;chr&gt; &quot;Adam LIPIŃSKI&quot;, &quot;Elżbieta WITEK&quot;, &quot;Marzena ...
+## $ liczba_glosow     &lt;dbl&gt; 26199, 22168, 14608, 14551, 10802, 15206, 16...
+## $ procent           &lt;dbl&gt; 7.34, 6.21, 4.09, 4.08, 3.03, 4.26, 4.57, 2....</code></pre>
+<p>Na początek sprawdzimy ile procent głosów zdobył nasz bohater? By lepiej można było wyświetlić dane, z tabeli zostawimy jedynie trzy zmienne (kolumny): - imię i nazwisko posła - procent głosów jaki otrzymał - liczbę głosów</p>
+<pre><code>## # A tibble: 1 x 3
+##     imie_nazwisko procent liczba_glosow
+##             &lt;chr&gt;   &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Michał SZCZERBA    0.45          4919</code></pre>
+<p>Hmm, na kandydata Michała Szczerbę oddało swój głos 4 tys. 919 wyborców co stanowi <strong>0.45 procent</strong> głosów w okręgu wyborczym w którym startował!</p>
+<p>Smaczku dodaje fakt, że okręg 19, to największy w Polsce okręg wyborczy, zwany przez zapewne zawistnych - Lemingradem. Wyborcy popierają tam głównie Platformę Obywatelską, której przedstawicielem jest poseł Szczerba. W wyborach w 2015 roku uprawnionych do głosowania w okręgu 19 było <strong>1 mln 561 tysięcy 289 osób</strong> z czego udział w wyborach wzięło i oddało ważny głos <strong>1 mln 95 tysięcy 215</strong> obywateli RP. Frekwencja - 70,80 procent była jedną z najwyższych w kraju. Startując w takim miejscu, Michał Szczerba zdobywa <strong>0.45 procent</strong> głosów!</p>
+<p>Mam podejrzenie, że gdyby startował koń o imieniu <a href="https://pl.wikipedia.org/wiki/Bucefa%C5%82">Bucefał</a>, to mógłby zdobyć tyle samo głosów :-)</p>
+<p>Zaraz, zaraz, no ale może inni kandydaci, też tak mieli? Może jest jakaś specyfika tego okręgu, że na kandydatów oddawane jest tyle głosów, że jakby jeden z drugim poprosił na fejsie swoich znajomych by na niego głosowali, to pewnie uzyskałby podobny wynik?</p>
+<p>Mamy dane, to możemy zobaczyć co w nich jest. Obejrzyjmy wyniki z okręgu 19.</p>
+<p>Poniżej ranking według procentu poparcia.</p>
+<p><img src="/post/2017-07-23-procenty-posla-szczerby_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Wynik nie powinien nikogo, kto zna polską ordynację wyborczą, zaskakiwać. Premiuje ona duże partie, których liderzy są końmi pociągowymi dla innych kandydatów. W okręgu 19 (Warszawa) jest to szczególnie widoczne, bo tu startowali najwięksi ówcześni adwersarze czyli Ewa Kopacz - lider Platformy Obywatelskiej i Jarosław Kaczyński - lider Prawa i Sprawiedliwości. Oczywiście miało to spory wpływ na wyniki pozostałych kandydatów, bo wyborcy nie chcąc “marnować” głosu, oddają go na pewniaków. Można zatem powiedzieć, że kandydat Szczerba uzyskałby więcej głosów, gdyby startował np. w innym okręgu.</p>
+<p>Wiemy już, że trochę nie z własnej winy, Michał Szczerba uzyskał - na tle innych - wynik raczej w końcówce tabeli w okręgu gdzie startował. Popatrzmy jeszcze z innej strony: jak nasz bohater wypada na tle innych kandydatów w całej Polsce. Może te 4 tysiące głosów to nie jest tak mało?</p>
+<pre><code>## # A tibble: 1 x 4
+##     imie_nazwisko procent liczba_glosow ranking
+##             &lt;chr&gt;   &lt;dbl&gt;         &lt;dbl&gt;   &lt;int&gt;
+## 1 Michał SZCZERBA    0.45          4919     450</code></pre>
+<p>No cóż, nie da się ukryć, że tu wynik Michała Szczerby jest jeszcze słabszy. Odwróć tabelę i Michał Szczerba (prawie) na czele. Dokładnie na 450 miejscu w Polsce.</p>
+<p>Biorąc to pod uwagę można - parafrazując słynne zdanie prezydenta Francji Jacka Chiraca - powiedzieć, że poseł Michał Szczerba <strong>stracił bardzo dobrą okazję, by siedzieć cicho</strong>.</p>
+<p>Przynajmniej w kwestii procentów poparcia.</p>
