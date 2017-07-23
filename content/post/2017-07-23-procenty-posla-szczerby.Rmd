@@ -11,7 +11,7 @@ tags:
 
 Jest takie stare - nie wiem czy polskie - powiedzenie: nie wywołuj wilka z lasu. Idealnie pasuje mi ono do posła Michała Szczerby, który na Twitterze napisał:
 
-{{< tweet 888829132884385793 >}}
+{{<tweet 888829132884385793>}}
 
 ...i wywołał wilka, czyli mnie :-)
 
