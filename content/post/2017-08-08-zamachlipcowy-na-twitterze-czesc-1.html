@@ -52,7 +52,7 @@ slug: zamachlipcowy-na-twitterze-czesc-1
 <p><em>z danych, które mamy wynika, że pierwszy tweet z hashtagiem “#zamachlipcowy” ukazał się 2017-07-15 11:55:35</em></p>
 </blockquote>
 <p>Zobaczmy go:</p>
-<p>{{&lt; tweet 886162317389565952 &gt;}}</p>
+{{% tweet 886162317389565952 %}}
 <p>Widzimy, że pierwsza pozycja w naszych danych to…retweet, a to oznacza, że</p>
 <blockquote>
 <p>na 100 proc. nie mamy całości danych.</p>
@@ -618,7 +618,7 @@ MarkielHelcia
 </blockquote>
 <p>Wniosek: ewidentnie widać, że jest sporo kont, które być może nie były bardzo aktywne, ale w swojej masie stanowią znaczący procent aktywności. Może to świadczyć, że to był <strong>autentyczny, oddolny ruch niektorych użytkowników Twittera.</strong>, nie mający wiele wspólnego z astroturfingiem. Kamyczek do ogródka przeciwników tezy o astroturfingu :-)</p>
 <p>Zobaczmy jeszcze, jak to będzie wyglądać na wykresie. Użyjemy histogramu, bo to najodpowiedniejszy wykres do takiego typu danych. Wyfiltrowałem tylko te konta, które opublikowały mniej niż 50 tweetów/retweetów. Dlaczego? Bo dzięki temu “powiększyliśmy” dane i możemy przyglądnąć się rozkładowi aktywności w grupie, która może nie często publikowała, ale za to było tych kont zdecydowana większość.</p>
-<p><img src="/post/2017-08-08-zamachlipcowy-na-twitterze-czesc-1_files/figure-html/unnamed-chunk-10-1.png" width="672" /> Z histogramu możemy wyciągnąć kilka fajnych wniosków.</p>
+<p><img src="/post/2017-08-08-zamachlipcowy-na-twitterze-czesc-1_files/figure-html/unnamed-chunk-11-1.png" width="672" /> Z histogramu możemy wyciągnąć kilka fajnych wniosków.</p>
 <blockquote>
 <p>w badanym okresie było ponad 5 tysięcy kont, które tylko raz użyły hashtagu #zamachlipcowy. Jeśli dodamy do tego tych co dwa (prawie 2 tysiące) i trzy (prawie tysiąć) razy publikowali, to mamy grupę 8 tysięcy twitterowiczów, czyli <strong>72.94 procent wszystkich unikalnych kont!</strong>. Znowu kamyczek do ogródka przeciwników tezy o astroturfingu.</p>
 </blockquote>
@@ -1060,7 +1060,7 @@ WojciechMincewi
 <p><span class="citation">@MichalBoni</span> dobrze się napracował. Napisał sporo tweetów, ale też sporo retweetował. Podobnie konto <span class="citation">@Polskawruinie</span>. Trochę na łatwiznę poszło konto <span class="citation">@SMDBialystok</span>, które sporo, ale tylko retweetowało.</p>
 </blockquote>
 <p>Zobaczmy jeszcze histogram.</p>
-<p><img src="/post/2017-08-08-zamachlipcowy-na-twitterze-czesc-1_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="/post/2017-08-08-zamachlipcowy-na-twitterze-czesc-1_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Dopełnieniem niech będzie kolejna 5 Tukeya, która niewiele wnosi.</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.000   1.000   2.000   4.164   4.000 128.000</code></pre>
@@ -1483,7 +1483,7 @@ slawlo1
 <p>No i 5 Tukeya</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.000   1.000   1.000   5.692   4.000 847.000</code></pre>
-<p><img src="/post/2017-08-08-zamachlipcowy-na-twitterze-czesc-1_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="/post/2017-08-08-zamachlipcowy-na-twitterze-czesc-1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Z tych trzech wykresów można zaryzykować tezę - chociaż trudno ją na podstawie tych danych udowodnić - że</p>
 <blockquote>
 <p>mieliśmy do czynienia ze sporą aktywnością stosunkowo dużej liczby kont, które tweetowały lub retweetowały hashtag #zamachLipcowy</p>
@@ -1511,7 +1511,7 @@ slawlo1
 <p>Każdego czytelnika zachęcam do trzech rzeczy:</p>
 <ul>
 <li>uwag czy komentarzy pod postem ewentualnie kontaktowania się ze mną na <a href="http://twitter.com/dziennikarz">Twitterze</a></li>
-<li>ściągnięcia <a href="/dane/zamachLipcowy.csv">pliku danych z tweetami i retweetami</a> jakie użyłem i samodzielnego eksplorowania.</li>
+<li>ściągnięcia <a href="dane/zamachLipcowy.csv">pliku danych z tweetami i retweetami</a> jakie użyłem i samodzielnego eksplorowania.</li>
 <li>podzieleniem się linkiem do mojego posta na Twitterze czy Facebooku.</li>
 </ul>
 </div>

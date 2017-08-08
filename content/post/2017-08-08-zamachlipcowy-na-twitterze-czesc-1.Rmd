@@ -73,8 +73,11 @@ Tweety zostały opublikowane pomiędzy `r min(df$created)` a  `r max(df$created)
 
 Zobaczmy go:
 
+```{r echo=FALSE, message=FALSE}
+library(blogdown)
+shortcode("tweet","886162317389565952")
+```
 
-{{< tweet 886162317389565952 >}}
 
 
 Widzimy, że pierwsza pozycja w naszych danych to...retweet, a to oznacza, że 
@@ -394,6 +397,6 @@ Sporo, ale ja na podstawie tylko tych danych, nie odważyłbym się wyciągać o
 Każdego czytelnika zachęcam do trzech rzeczy:
 
 - uwag czy komentarzy pod postem ewentualnie kontaktowania się ze mną na [Twitterze](http://twitter.com/dziennikarz)
-- ściągnięcia [pliku danych z tweetami i retweetami](/dane/zamachLipcowy.csv) jakie użyłem i samodzielnego eksplorowania.
+- ściągnięcia [pliku danych z tweetami i retweetami](dane/zamachLipcowy.csv) jakie użyłem i samodzielnego eksplorowania.
 - podzieleniem się linkiem do mojego posta na Twitterze czy Facebooku.
 
