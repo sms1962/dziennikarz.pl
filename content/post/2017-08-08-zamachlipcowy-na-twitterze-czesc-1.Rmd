@@ -147,7 +147,7 @@ Interaktywnym nie dlatego, że chcemy tu zaszpanować, tylko dlatego, że dzięk
 
 Czary-mary, hokus-pokus i buum
 
-```{r fig.width=8, fig.height=5, echo=FALSE}
+```{r echo=FALSE}
 dane_xts <- function(df,jednostka) {
   # jednostka może być jak w funkcji floor_date
   df_xts <- df %>%
