@@ -397,6 +397,6 @@ Sporo, ale ja na podstawie tylko tych danych, nie odważyłbym się wyciągać o
 Każdego czytelnika zachęcam do trzech rzeczy:
 
 - uwag czy komentarzy pod postem ewentualnie kontaktowania się ze mną na [Twitterze](http://twitter.com/dziennikarz)
-- ściągnięcia [pliku danych z tweetami i retweetami](dane/zamachLipcowy.csv) jakie użyłem i samodzielnego eksplorowania.
+- ściągnięcia [pliku danych z tweetami i retweetami](/data/zamachLipcowy.csv) jakie użyłem i samodzielnego eksplorowania.
 - podzieleniem się linkiem do mojego posta na Twitterze czy Facebooku.
 
