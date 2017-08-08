@@ -1,7 +1,7 @@
 baseurl = "/"
 relativeurls = true
 languageCode = "pl-pl"
-title = "A Hugo website"
+title = "Dziennikarz.pl"
 theme = "hugo-lithium-theme"
 googleAnalytics = "UA-73680-1"
 disqusShortname = "dziennikarz"
