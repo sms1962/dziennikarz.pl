@@ -1,0 +1,399 @@
+---
+title: \#zamachlipcowy na Twitterze - cześć 1
+author: sms
+date: '2017-08-08'
+categories: ~
+tags: ~
+slug: zamachlipcowy-na-twitterze-czesc-1
+---
+
+```{r echo=FALSE}
+library(knitr)
+```
+
+W ostatnich dniach głośno w Polsce o zjawisku [astroturfingu](https://en.wikipedia.org/wiki/Astroturfing). Nie chciałem, ale w gruncie rzeczy to fajna okazja, by pokazać nie tyle samo zjawisko - o tym już sporo napisano - ale jak bada się dane z Twittera. W tym i pewnie jeszcze kilku następnych notatkach, pokaże na przykładzie kilku wzbudzających emocje dyskusji na Twitterze, metody stosowane do badania danych z Twittera. Najpierw jednak kilka zdań tytułem wstępu. 
+
+W drugiej połowie lipca na polskim Twitterze miały miejsca akcje protestu przeciw rządowym ustawom reformującym sądownictwo. Protestujący używając kilkunastu hashtagów publikowali tweety w których wyrażali swoją niezgodę na uchwalone przez Sejm trzy ustawy. Ostatecznie Prezydent Andrzej Duda zawetował dwie z nich, a jedną podpisał.
+Akcja protestacyjna spotkała się z zarzutami o astroturfing. Prawica zarzuciła lewicy, że protesty w internecie są inspirowane i tworzy się wrażenie, że są inicjatywą oddolną, naturalnym odruchem sprzeciwu społeczeństwa. Na Twitterze w dużych ilościach publikowano tweety z hashtagami i treściami sprzeciwiającymi się #astroturfingowi.
+
+Pojawiło się kilka kilka publikacji zarówno o samych protestach jak i o proteście przeciw astroturfingowi. Głośnym echem odbiła się analiza [Polish Astroturfers Attack… Astroturfing](https://medium.com/dfrlab/polish-astroturfers-attack-astroturfing-743cf602200) autorstwa [Bena Nimmo](https://twitter.com/benimmo) z lewicowego think tanku Atlantic Council. Autor analizuje w niej zjawisko astroturfingu w Polsce na podstawie akcji przeciw astroturfingowi. Analiza Nimmo jest przeprowadzona zgodnie z regułami i narzędziami jakimi posługują się data scientists, a wnioskowanie na podstawie zaprezentowanych danych - jest poprawne. Są jednak z nią dwa problemy, które każdemu data scientists zapalają czerwone światełko. Nimmo:
+
+- nie publikuje danych, które analizuje, chociaż są to dane, które były dostępne publicznie.
+- badając zjawisko astroturfingu w Polsce, nie analizuje innych hashtagów, a szczególnie tych, które wskazywała prawica jako przykład kampanii astroturfingowej.
+
+Podstawową zasadą nauki na całym świecie jest transparentność i publikowanie danych, które pozwolą innym naukowcom sprawdzić wyniki badań. Bez tego praca badawcza - z naukowego punktu widzenia - jest bezwartościowa. Możemy najwyżej wierzyć, lub nie w jej wyniki. 
+
+Badanie tylko wycinka zjawiska jest dopuszczalne, ale w tym wypadku nie tylko przeczy zdrowemu rozsądkowi jak i etyce. To mniej więcej tak, jakbym badając zjawisko dyskryminacji kobiet muzułmanek w Europe Zachodniej, zrobił badanie na podstawie opinii mężczyzn z Arabii Saudyjskiej. :-)
+
+Warty odnotowania jest też tekst [Beaty Biel](https://twitter.com/beatabiel) pt. [Ludzie, boty i agent zero. Cała Polska na tropie astroturfingu](http://www.tvn24.pl/magazyn-tvn24/ludzie-boty-i-agent-zero-cala-polska-na-tropie-astroturfingu,111,2048). Autorka korzysta z danych Nimmo, ale też opisuje szerzej całe zjawisko astroturfingu. Zwraca też uwagę na to, że jest to zjawisko niebezpieczne dla demokracji z czym rzeczywiście trudno się nie zgodzić. Niestety, miejscami tekst Beaty, ma tą samą chorobę co analiza Nimmo: pokazuje obraz tylko jednej strony. Tymczasem nie przesądzając jak to jest, wystarczyło chociażby spojrzeć na tajmlajny kilku kolegów dziennikarzy, by mieć gotowe przykłady nadaktywnych i ideologicznie zaangażowanych kont na Twitterze, które do badania astroturfingu pasowałyby jak ulał.
+
+W analizie poniżej (i pewnie w następnych wpisach) nie stawiam sobie żadnych pytań czy hipotez. Nie zakładam, że udowodnię, że mamy (lub nie) do czynienia ze zjawiskiem astroturfingu. Chcę po prostu przyglądnąć się aktywności i treściom oraz kontom, które były aktywne w dniach protestu. 
+
+Drugi cel jaki mi przyświeca to edukacja. Problemem polskiego dziennikarstwa jest to, że dziennikarze nie potrafią analizować danych. Dziennikarstwo danych, z małymi wyjątkami jak np. [BiqData Agory](http://biqgada.pl) skończyło się na tworzeniu grafik przy pomocy gotowych narzędzi i map na Google Maps. To poziom mniej więcej sprzed 10 lat na świecie. 
+
+Wiem, że to trochę naiwne, ale może pokazanie co można wyciągnąć z pozornie niewiele mówiących danych, skłoni cześć osób, do samodzielnej nauki dziennikarstwa danych, a tym sam, da im narzędzie, które jest obecnie niezbędne dla każdego dziennikarza, jak komputer z internetem i smartfon :-)
+
+
+Tyle tytułem wstępu, przejdźmy do zasadniczej analizy.
+
+## Dane
+
+Dane pochodzą z API Twittera i były pobierane pomiędzy 22 i 24 lipca 2017 roku. Na końcu wpisu znajdziecie link do pliku csv, tak że każdy będzie mógł je sobie pobrać by je zbadać albo wytapetować nimi swój pokój :-)
+
+W dniu prezydenckiego weta ściągnąłem tweety opublikowane z 14-ma różnymi hashtagami. Właściwie zrobiłem to dla celów historyczno - edukacyjnych. Po prostu często ściągam dane pokazujące różne zjawiska, by móc na nich próbować rożne techniki czy wykorzystywać je w pracy ze studentami. Z tych, które ściągnąłem dzisiaj zajmiemy się tweetami w których użyto hashtagu **#zamachlipcowy**. Zbadamy jedynie konta w nich występujące; nie będziemy "tykali" treści tweetów. Do analizy użyłem skryptów napisanych w [języku R](https://www.r-project.org/), ale równie dobrze można ją przeprowadzić na przykład w Pythonie. Ba większość wykonywanych operacji można zrobić  nawet w Excelu. Skryptów nie publikuje bo dla osób, które nie znają R, albo nie potrafią programować są zupełnie niezrozumiałe. Dla tych, którzy znają R operacje, które tu wykonuje nie powinny stanowić żadnego problemu. Jeśli jednak kogoś interesuje - na przykład zaczyna swoją przygodę z R - i chciałby zobaczyć jak się niektóre rzeczy robi, to słówko w komentarzach i udostępnię.
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(stringr)
+library(dygraphs)
+library(xts)
+library(lubridate)
+
+df <- readRDS("dane/zamachlipcowy.RDS")
+df <- as.tibble(df)
+# ustawienie czasu CET
+df$created <- with_tz(df$created)
+```
+Twitter dla każdego tweeta udostępnia kilkanaście różnych danych (dokładnie  16). Pierwszą rzeczą w analizie jest poznanie danych. Musimy znać odpowiedź na kilka pytań:
+
+- ile mamy danych?
+- w jakim okresie czasu zostały opublikowane?
+- co zawierają zmienne? (kolumny w tabeli)
+
+Gdy to już będziemy wiedzieć, to zrobimy kilka prostych statystyk, by głębiej zaglądnąć w dane.
+
+No to do roboty. 
+
+## wstępna eksploracja
+Nasze dane to tzw. ramka danych (w uproszczeniu tabela) składająca się z **`r ncol(df)` kolumn i `r nrow(df)` wierszy**. Każda kolumna przechowuje wartości zmiennej właściwej dla tej kolumny. Na przykład kolumna o nazwie "text" zawiera teksty wszystkich tweetów. Każdy wiersz zawiera jeden tweet, czyli wniosek z tego, że mamy **`r nrow(df)` tweetów.**
+
+Tweety zostały opublikowane pomiędzy `r min(df$created)` a  `r max(df$created)`. Tu pierwszy wniosek: 
+
+> *z danych, które mamy wynika, że pierwszy tweet z hashtagiem "#zamachlipcowy" ukazał się `r min(df$created)`*
+
+Zobaczmy go:
+
+
+{{< tweet 886162317389565952 >}}
+
+
+Widzimy, że pierwsza pozycja w naszych danych to...retweet, a to oznacza, że 
+
+>na 100 proc. nie mamy całości danych.
+
+Akurat w tej analizie nie ma to większego znaczenia, bo nie szukamy mitycznego "agenta zero" :-). Warto jednak w takiej sytuacji zastanowić się dlaczego nie mamy wszystkich danych? W tym konkretnym przypadku jest to spowodowane tym, że Twitter przez API udostępnia dane z mniej więcej ostatnich 7 dni. Ja ściągałem je  22 i 24 lipca, a więc dane np. z 14 lipca mógł mi już Twitter nie udostępnić.
+
+Przyglądnijmy się teraz jakie dane udostępnia nam Twitter i co możemy się dowiedzieć o każdym z ponad 60 tysięcy tweetów jakie będę analizował.
+
+```{r echo=FALSE}
+tweet <- df %>%
+  filter(id =="886162317389565952" & screenName == "dobson733") %>%
+  head(1)
+str(tweet)  
+```
+Nie jest to może najpiękniejsza prezentacja danych, ale wygodna, bo pokazuje nam całą zwartość wiersza w naszej tabeli. Łatwo też z tego odczytać kilka informacji. Pierwsza linijka jest - w tym przypadku mało ważna - następne zawierają 3 kolumny. W pierwszej jest nazwa zmiennej, w drugiej jej typ, a w trzeciej wartość zmiennej. 
+
+- **text** - jest zmienną znakową i zawiera treść tweeta
+- **favorited** jest zmienną logiczną (przyjmuje dwie wartości: TRUE/FALSE) i mówi czy tweet/retweet był dodany przez kogoś do Ulubionych (favorites)
+- **favoritedCount** to zmienna numeryczna. Jej wartość mówi ile razy tweet/retweet został dodany do ulubionych
+- **replyToSN** - to zmienna znakowa, która mówi o nazwie konta(SN) na którego tweeta jest to odpowiedź. 
+- **created** - to zmienna typu data/czas i informuje kiedy dokładnie tweet został opublikowany
+- **truncated** - kompletnie nieważna. Informuje czy tweet był skracany.
+- **replyToSID** - znakowa, która mówi na jaki ID tweeta jest to odpowiedź.
+- **id** - to unikalny i niepowtarzalny numer tweeta lub retweeta. 
+- **replyToUID** - numer użytkownika, na którego tweet jest to odpowiedź.
+- **statusSource** - adres url klienta (programu) jaki był użyty do wysłania tweeta.
+- **screenName** - znakowa. Nazwa autora tweeta/retweeta
+- **retweetCount** - numeryczna. Ile razy tweet był retweetowany
+- **isRetweet** - logiczna. Mówi czy jest to retweet.
+- **retweeted** - logiczna. Informuje czy tweet był retweetowany
+- **longitude**, **latitude** - współrzędne geograficzne (jeśli udostępnione przez autora) miejsca z którego opublikowano tweeta.
+
+## Analiza
+Wiemy już sporo o danych, czas więc próbować wyciągać informacje :-) Będziemy chcieli się dowiedzieć:
+
+- ile jest tweetów a ile retweetów?
+- jak rozkładała się w czasie aktywność tweetów i retweetów?
+
+### Tweety i retweety
+Jeśli uważnie przeczytałeś opis zmiennych występujących w naszych danych, to być może Twoją uwagę zwróciła zmienna **isRetweet**. Mówi ona czy dana pozycja jest retweetem (wartość TRUE) czy tweetem (wartość FALSE). W pierwszym tweecie powyżej ma ona wartość TRUE, a więc jest to retweet. My chcemy się dowiedzieć ile z `r nrow(df)` pozycji w naszej ramce jest tweetami, a ile retweetami?  Zsumujmy więc ile razy zmienna isRetweet ma wartość TRUE (retweet) a ile FALSE(tweet).
+```{r echo=FALSE}
+table(df$isRetweet)
+```
+
+Kolejny wniosek: 
+
+> mamy sytuację w miarę normalną bo mniej więcej mamy 4 razy więcej retweetów niż tweetów. 
+
+### Czas aktywności
+Zobaczmy jeszcze jak wygląda rozkład w czasie:
+
+- wszystkich aktywności
+- tweetów
+- retweetów
+
+Wykorzystamy do tego szeregi czasowe. Trochę upraszczając to ciąg dat (często zawierających również godzinę czy minutę) oraz przypisanych im wartości - w naszym wypadku będzie to liczba aktywności. 
+
+Czyli co zrobimy, a raczej co zlecimy komputerowi, by zrobił dla nas? 
+
+Pogrupujemy dane według daty publikacji zawartej w zmiennej **created** i dla każdej daty (np. dnia, godziny) policzymy ile było wszystkich aktywności, tweetów czy retweetów. Zwróć uwagę, że dane pogrupowaliśmy wg. godzin, czyli "zaokrągliliśmy" wartość zmiennej created do pełnych godzin. Wszystko to brzmi groźnie, ale - wierz mi - to proste. Całość wyświetlimy w interaktywnym wykresie. 
+
+A co! 
+
+Interaktywnym nie dlatego, że chcemy tu zaszpanować, tylko dlatego, że dzięki temu można szybko zoomować - czyli przyglądać się dokładniej danym w różnych okresach czasu.
+
+Czary-mary, hokus-pokus i buum
+
+```{r fig.width=8, fig.height=5, echo=FALSE}
+dane_xts <- function(df,jednostka) {
+  # jednostka może być jak w funkcji floor_date
+  df_xts <- df %>%
+    mutate(created_jednostka = floor_date(created, unit = jednostka)) %>%
+    select(created_jednostka) %>%
+    count(created_jednostka)
+  timesieries <- xts(x=df_xts$n, order.by = df_xts$created_jednostka,tzone = "CET" )
+}
+
+zamachlipcowy_xts <- dane_xts(df,"hour")
+dygraph(zamachlipcowy_xts,
+         main = "Czas publikowania tweetów i retweetów z hashtagiem #zamachLipcowy",
+        ylab = "Liczba aktywności") %>% 
+  dySeries(label="Wszystkie aktywności") %>%
+  dyRangeSelector()
+```
+Pierwszy rzut oka i widać wyraźną regularność. Najedź myszką w dowolnym punkcie linii na wykresie, a wtedy w prawym górnym roku zobaczysz dokładną godzinę i liczbę kont, które użyły hashtagu #zamachlipcowy. 
+
+> Pierwszy, dużo mniejszy, pik jest prawie każdego dnia około godziny 10. Drugi przeważnie po 21. 
+
+Drugi rzut oka :-). Zauważ, że 
+
+> częstoliwość z każdym dniem spada. 
+
+Pytanie dlaczego? Naturalne wypalenie się hasztaga? Inne hashtagi? Spróbujemy później coś jeszcze na ten temat się dowiedzieć.
+
+Przyglądnijmy się teraz bliżej aktywnościom i powiększmy zakres danych, by zobaczyć szczegóły. Na pierwszy ogień weźmy dzień, gdzie był największy pik czyli 16 lipca. Suwaki pod  wykresem przesuwamy jeden w prawo, drugi w lewo by "zoomować"" zakres.
+
+> Największe skoki mamy 16 lipca między 14 a 15 i w pozostałe dni. Drugi pik, ale już nie tak duży jest w godzinach wieczornych między 20 a 21. 
+
+Może warto zobaczyć trochę dokładniej te godziny pików? Tak, ale do tego potrzebne są dane z dokładnością minutową (lub np. 5, 10 minutową). Zobaczymy, może później się tym zajmiemy. Teraz zobaczymy czy nie ma różnic pomiędzy intensywnością w tweetowaniu i retweetowaniu.
+
+
+```{r fig.width=8, fig.height=5, echo=FALSE}
+df_tweety <- df %>%
+  filter(isRetweet == 0) %>%
+  select(created)
+df_retweety <- df %>%
+  filter(isRetweet == 1) %>%
+  select(created)
+
+df_tweety_xts <- dane_xts(df_tweety,"hour")
+df_retweety_xts <- dane_xts(df_retweety,"hour")
+
+tweety_i_retweety_rts <- cbind(df_tweety_xts, df_retweety_xts)
+dygraph(tweety_i_retweety_rts,
+        main = "Kiedy publikowano tweety a kiedy retweety",
+        ylab = "Liczba aktywności") %>%
+  dySeries(label = "Tweety") %>%
+  dySeries(label = "Retweety") %>%
+  dyRangeSelector()
+
+
+```
+Ciekawy ten wykres, prawda?
+
+Ewidentnie widać, że 
+
+> wzrost retweetów jest tuż po wzroście tweetów. Wniosek? Po pierwsze tematyka tweetów musiałą być interesująca, a po drugie autorami tweetów musiały być osoby znane na Twitterze, albo przynajmniej grupie, która retweetowała. Stawiałbym, że to influencerzy, przynajmniej w tym środowisku. 
+
+Kolejny wniosek, ale to przynajmniej na razie tylko hipoteza i do tego trochę z palucha :-): 
+
+> istnieje korelacja pomiędzy liczbą tweetów, a liczbą retweetów. To znaczy gdyby nie było codziennie "powtórzeń" tweetów, to temat szybko by zdechł. 
+
+By to potwierdzić lub zaprzeczyć, trzeba będzie sprawdzić czy są konta na Twitterze, które tweetowały ten hashtag co najmniej raz dziennie, przez kilka dni.
+
+Trzeci wniosek: 
+
+> potwierdza się teza o wygaszaniu się tematu wraz z upływem dni. 24 lipca liczba retweetów prawie zrównała się z liczbą tweetów, co oznacza, że odzew był już słabiutki.
+
+Z pewnością warto sprawdzić jak wyglądała aktywność w przeciągu tych 9 dni zarówno często piszących autorów tweetów jak i tych, co jedynie często retweetują. Hipoteza: **może to grupa, która robi buzz?**. Byłby to kamyczek dla tych, którzy wierzą, że to działania astroturfingowe :-)
+
+### Konta
+Sporo już wiemy o popularności hasthagu, wiemy ile razy go publikowano, kiedy były okresy największej aktywności. Mamy już trochę rzeczy do - być może - późniejszego pogłębienia. Czas trochę zanurkować w dane i sprawdzić:
+
+- ile osób tak naprawdę uczestniczyło w promowaniu hashtagu #zamachlipcowy.
+- które z tych osób były najaktywniejsze?
+- jak wyglądała aktywność badanych kont czyli trochę statów na temat jak często tweetowano lub retweetowano.
+
+To na początek, później zanurkujemy jeszcze głębiej.
+
+Liczbę osób stosunkowo łatwo obliczyć. Wystarczy, że zlecimy komputerowi by policzył nam ile jest unikalnych nazw kont w naszej ramce danych. Nazwa konta jest w zmiennej **screenName** wiec abrakadabra, czary mary, komputerze ile jest takich unikalnych nazw?
+
+```{r echo=FALSE}
+length(unique(df$screenName))
+
+```
+Moglibyśmy przyjąć, że średnio jedno konto wysłało albo retweetowało 6 tweetów. Moglibyśmy, ale to by było pójście na łatwiznę... dozwolone, ale przecież niewiele nam to mówi, poza tym, że to może tyle ile mieszka w dwóch, trzech osiedlach większego miasta :-). 
+
+Ważne jest by poznać te konta. Jak były aktywne? Jakie są różnice w aktywności między kontami? Poszukamy też to co statystycy i dziennikarze lubią najbardziej, czyli ekstrema (najwięcej, najmniej) itp. 
+
+Najlepiej będzie jeśli: dla każdego z unikalnych kont,  policzymy ile razy wykonało jakąś akcję (tweet/retweet). Poznamy dzięki temu liderów i dowiemy się jak często twittowali/retweetowali. Zobaczymy też obraz aktywności całej grupy - tych aktywnych, średnio aktywnych i tych co to dużo się nie przyłożyli.
+
+Najpierw czołówka (Top50) czyli unikalne konta uporządkowane według liczby aktywności w badanym okresie. 
+
+```{r echo=FALSE, message=FALSE}
+top_screeNames <- df %>%
+  select(screenName) %>%
+  count(screenName, sort=TRUE) 
+
+top_screeNames %>%
+  top_n(50) %>%
+  kable(format = "html")
+
+
+
+# kable(top_screeNames,format = "html", results="asis)
+```
+
+Znowu mamy kilka wniosków. 
+
+> W pierwszej 50 sporo jest kont wskazujących na powiązanie z Platformą obywatelską. Jest też kilka kont o mocno podejrzanych - na pierwszy rzut oka -  nazwach np. "chriss19720722", "WENDY87386148", "TomekNo80240174". 
+
+Na pewno jednym i drugim trzeba się będzie przyglądnąć, ale na razie odkładamy je na bok. 
+
+> By trafić do naszego TOP100 trzeba było wysłać co najmniej 84 tweety albo retweety. 
+
+Zobaczmy jeszcze statystyczną piątkę, czyli 5 podstawowych statystyk, które robi się w analizie eksploracyjnej, zwaną też ["5 Tukeya"](https://en.wikipedia.org/wiki/John_Tukey)
+
+```{r echo=FALSE}
+summary(top_screeNames$n)
+
+```
+Te liczby pokazują nam jak rozkładają się wartości aktywności wśród naszych kont. Minimum i maksimum chyba nie trzeba nikomu tłumaczyć. Za średnią przyjmiemy raczej medianę - czyli 2 aktywności. "1st Qu", to po polsku 1 kwartyl (25 proc. danych). 
+
+Interpretujemy to w ten sposób, że 
+
+> mniej niż 25 proc. kont wysłało 1 tweet. Z drugiej strony możemy też powiedzieć, że 75 proc. kont wysłało więcej niż 1 tweet/retweet :-) 
+
+Podobnie z 3 kwantylem (3rd Qu.), 
+
+> 25 proc. kont wysłało co najmniej 4 tweety/retweety i odwrotnie: 75 proc. kont wysłało mniej niż 4 tweety/retweety. 
+
+Wniosek: ewidentnie widać, że jest sporo kont, które być może nie były bardzo aktywne, ale w swojej masie stanowią znaczący procent aktywności. Może to świadczyć, że to był **autentyczny, oddolny ruch niektorych użytkowników Twittera.**, nie mający wiele wspólnego z astroturfingiem. Kamyczek do ogródka przeciwników tezy o astroturfingu :-)
+
+Zobaczmy jeszcze, jak to będzie wyglądać na wykresie. Użyjemy histogramu, bo to najodpowiedniejszy wykres do takiego typu danych. Wyfiltrowałem tylko te konta, które opublikowały mniej niż 50 tweetów/retweetów. Dlaczego? Bo dzięki temu "powiększyliśmy" dane i możemy przyglądnąć się rozkładowi aktywności w grupie, która może nie często publikowała, ale za to było tych kont zdecydowana większość. 
+
+```{r echo=FALSE}
+library(ggplot2)
+top_screeNames %>%
+  filter(n<=50) %>%
+  ggplot(aes(x=n)) + geom_histogram(binwidth = 1, fill="red") +
+  ggtitle("Rozkład liczby aktywnośći z hashtagiem #zamachLipcowy", subtitle = "Tylko konta z liczbą aktywności mniejszą niż 50") +
+  xlab("liczba aktywności") +
+  ylab("liczba kont") +
+  theme_minimal()
+```
+Z histogramu możemy wyciągnąć kilka fajnych wniosków. 
+
+> w badanym okresie było ponad 5 tysięcy kont, które tylko raz użyły hashtagu #zamachlipcowy. Jeśli dodamy do tego tych co dwa (prawie 2 tysiące) i trzy (prawie tysiąć) razy publikowali, to mamy grupę 8 tysięcy twitterowiczów, czyli **`r round(sum(top_screeNames$n<=3)/nrow(top_screeNames)*100,2)` procent wszystkich unikalnych kont!**. Znowu kamyczek do ogródka przeciwników tezy o astroturfingu.
+
+A jak wygląda czołówka wśród tych co napisali najwięcej tweetów (bez retweetów)?
+
+Voila:
+
+```{r echo=FALSE}
+top_screeNames_tylko_tt <- df %>%
+  filter(isRetweet==0) %>%
+  select(screenName) %>%
+  count(screenName, sort=TRUE)
+
+top_screeNames_tylko_tt %>%
+  top_n(50) %>%
+  kable(format = "html")
+
+```
+
+Ciut inaczej. 
+
+> @MichalBoni dobrze się napracował. Napisał sporo tweetów, ale też sporo retweetował. Podobnie konto @Polskawruinie. Trochę na łatwiznę poszło konto @SMDBialystok, które sporo, ale tylko retweetowało. 
+
+Zobaczmy jeszcze histogram.
+
+```{r echo=FALSE}
+library(ggplot2)
+top_screeNames_tylko_tt %>%
+  filter(n<=50) %>%
+  ggplot(aes(x=n)) + 
+  geom_histogram(binwidth = 1, fill="green") +
+    ggtitle("Rozkład liczby tweetów z hashtagiem #zamachLipcowy", subtitle = "Tylko konta z liczbą aktywności mniejszą niż 50") +
+  xlab("liczba tweetów") +
+  ylab("liczba kont") +
+  theme_minimal()
+```
+
+Dopełnieniem niech będzie kolejna 5 Tukeya, która niewiele wnosi.
+
+```{r echo=FALSE}
+summary(top_screeNames_tylko_tt$n)
+```
+No i na koniec wszystko to samo, tylko dla retweetów. Najpierw TOP, potem 5 Tukeya i histogram.
+
+```{r echo=FALSE}
+top_screeNames_tylko_rt <- df %>%
+  filter(isRetweet==1) %>%
+  select(screenName) %>%
+  count(screenName, sort = TRUE)
+
+top50 <- top_screeNames_tylko_rt %>%
+  top_n(50)
+
+kable(top50, format = "html")
+```
+
+No i 5 Tukeya
+```{r echo=FALSE}
+summary(top_screeNames_tylko_rt$n)
+
+```
+
+```{r echo=FALSE}
+library(ggplot2)
+top_screeNames_tylko_rt %>%
+  filter(n<=50) %>%
+  ggplot(aes(x=n)) + 
+  geom_histogram(binwidth = 1, fill="blue") +
+    ggtitle("Rozkład liczby retweetów z hashtagiem #zamachLipcowy", subtitle = "Tylko konta z liczbą aktywności mniejszą niż 50") +
+  xlab("liczba retweetów") +
+  ylab("liczba kont") +
+  theme_minimal()
+```
+
+Z tych trzech wykresów można zaryzykować tezę - chociaż trudno ją na podstawie tych danych udowodnić - że
+
+> mieliśmy do czynienia ze sporą aktywnością stosunkowo dużej liczby kont, które tweetowały lub retweetowały hashtag #zamachLipcowy
+
+Uważny czytelnik zauważy zapewne, że coś te liczby się nie składają w te nieco ponad 8 tysięcy kont, które wykonały od jeden do trzech aktywności. To prawda, nie sumują się bo tak naprawdę to moglibyśmy jeszcze wydzielić grupy kont, które:
+
+- tylko tweetowały i nigdy nie retweetowały
+- tylko retweetowały i nigdy nie tweetowały
+- dodać do tego pozostałych
+
+Teraz się tym nie zajmiemy, ale niewykluczone, że później to zrobimy.
+
+## Podsumowanie
+
+Jak na razie ledwo musnęliśmy nasze dane. Trochę już wiemy np.:
+
+- ile było aktywności?
+- kiedy miała miejsce największa, a kiedy najmniejsza aktywność kont?
+- ile kont uczestniczyło?
+- jak wyglądał rozkład aktywności kont?
+- znamy konta, które były najbardziej aktywne?
+
+Sporo, ale ja na podstawie tylko tych danych, nie odważyłbym się wyciągać ostatecznych wniosków. Musimy jeszcze trochę eksplorować, ale do tego potrzebne nam są dodatkowe dane o kontach. Zajmiemy się tym w następnym poście.
+
+Każdego czytelnika zachęcam do trzech rzeczy:
+
+- uwag czy komentarzy pod postem ewentualnie kontaktowania się ze mną na [Twitterze](http://twitter.com/dziennikarz)
+- ściągnięcia [pliku danych z tweetami i retweetami](/dane/zamachLipcowy.csv) jakie użyłem i samodzielnego eksplorowania.
+- podzieleniem się linkiem do mojego posta na Twitterze czy Facebooku.
+
