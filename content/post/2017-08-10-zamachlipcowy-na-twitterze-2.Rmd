@@ -1,0 +1,222 @@
+---
+title: "Zamach lipcowy na Twitterze - część 2. Są boty"
+author: "sms"
+date: "2017-08-10"
+categories: ~
+tags: ~
+slug: zamachlipcowy-na-twitterze-2
+
+---
+
+```{r echo=FALSE}
+library(knitr)
+```
+
+W [pierwszym odcinku](http://www.dziennikarz.pl/2017/08/08/zamachlipcowy-na-twitterze-czesc-1/) analizy hashtagu #zamachlipcowy na Twitterze sprawdziliśmy jak często ten hashtag był publikowany i ile kont uczestniczyło w jego popularyzacji. W dzisiejszym poście wyciągniemy z Twittera trochę więcej informacji o zaangażowanych kontach. Sprawdzimy czy niektóre z nich, to nie są boty. Uprzedzając trochę napiszę, że... **są!**.
+
+Zajmiemy się trzema zagadnieniami:
+
+- wiekiem kont, to znaczy od kiedy są na Twitterze?
+- popatrzymy na ich aktywność
+- zbadamy jakich programów używali do publikowania?
+
+
+By przeprowadzić te wszystkie analizy, potrzebujemy z Twittera pobrać nieco inne dane. W pierwszej części pisałem, że jedną ze zmiennych zwracanych przez API Twittera przy każdym tweecie jest zmienna **screenName**. To po prostu nazwa konta (login) autora tweeta lub retweeta. Wyliczyliśmy również wcześniej, że w naszej bazie tweetów jest 11044 unikalnych **screenNames** czyli autorów tweetów/retweetów. Pobrałem dane o tych 11 tys. kont i zapisałem w ramce danych, którą tradycyjnie znajdziecie w formie pliku csv na końcu wpisu.
+
+Pierwszym etapem analizy zawsze jest poznanie danych na których będziemy pracować. Zobaczmy zatem po pierwsze ile mamy rekordów (kont) i jakimi zmiennymi dysponujemy dla każdego konta.
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+library(stringr)
+library(lubridate)
+library(ggplot2)
+library(dygraphs)
+library(xts)
+
+users <- readRDS("dane/zamachlipcowy.RDS")
+users <- users %>%
+  select(screenName) %>%
+  distinct()
+
+users_all <- readRDS("dane/zamachlipcowy_users_data_all.RDS")
+nrow(users_all)
+```
+> Pierwsza niespodzianka. Kont dla których danych mamy jest o `r 11044 - nrow(users_all)` mniej niż wyliczonych przez nas wcześniej autorów tweetów/retweetów. 
+
+To częsty przypadek, bo niektórzy użytkownicy np. skasowali konto, albo zamknęli do nich dostęp. Z jednej strony to nie jest problem, bo liczba tych kont nie jest duża, z drugiej mogą to być konta, które "zniknęły" z jakiegoś powodu. Warto więc sprawdzić, które to konta, może ich nazwy coś nam powiedzą?
+
+```{r echo=FALSE, message=FALSE}
+'%nin%' <- Negate('%in%')
+users_no_data <- users$screenName %nin% users_all$screenName
+table(users_no_data)
+users$screenName[users_no_data]
+```
+
+Losowo sprawdzając widzę, że rzeczywiście te konta zniknęły z Twittera. Sprawdźmy jeszcze jak aktywne były te konta i ewentualnie czy nie publikowały jakiś treści, które skłoniłyby je do zniknięcia z Twittera.
+
+Z naszej bazie tweetów z hashtagiem #zamachLipcowy wybieramy tylko tweety. Retweety nie są w tym wypadku istotne, bo z powodu retweeta rzadko kto usuwa konto :-) Następnie w bazie tweetów wyfiltrujemy tylko te, które napisały tweeta, które już usunęły dane i liczymy ile jest takich kont.  
+
+```{r echo=FALSE, message=FALSE}
+tweety <- readRDS("dane/zamachlipcowy.RDS")
+szukani_userzy <- users$screenName[users_no_data]
+
+tweety %>%
+  filter(isRetweet==0,screenName %in% szukani_userzy) %>%
+  count(screenName, sort=TRUE) %>%
+  kable()
+```
+
+Niewiele, bo tylko 37 kont, a więc spokojnie możemy sobie zapisać ich tweety w pliku, by później się nimi zająć. Plik tradycyjnie będzie udostępniony na końcu tekstu.
+
+```{r echo=FALSE, message=FALSE}
+tweety_szukanych <-tweety %>%
+  filter(isRetweet==0,screenName %in% szukani_userzy)
+
+# write_csv(tweety_szukanych,"konta_skasowane.csv")
+```
+
+## Jak długo konta są na Twitterze?
+
+Kolejnym krokiem będzie sprawdzenie "wieku" kont, czyli jak długo są na Twitterze. To w tym konkretnym przypadku ważne, bo pozwoli nam określić czy nie mieliśmy czasem do czynienia z masowym zakładaniem kont po to by trollować. To częsta praktyka.
+
+Zanim jednak się do tego weźmiemy, sprawdźmy jakimi zmiennymi opisane jest każde konto.
+
+```{r echo=FALSE, message=FALSE}
+str(users_all)
+```
+
+Po kolei,
+
+- description - to tzw. bio, opis, który jest na profilu konta
+- statusesCount - liczba opublikowanych tweetów
+- followersCount - liczba followersów
+- favoritesCount - liczba dodanych do favorites(ulubionych)
+- friendsCount - liczba kont, które obserwuje
+- url - adres strony internetowej podany w profilu
+- name - nazwa konta
+- created - data i godzina utworzenia konta
+- protected - czy konto jest za kłódką (wartość logiczna)
+- verified - czy konto jest zweryfikowane? (wartość logiczna)
+- screenName - login (nazwa konta występująca po znaku @)
+- location - podana przez internautę lokalizacja
+- lang - język
+- id - unikalny numer konta
+- listedCount - liczba list do których dodano konto
+- followRequestSent - dla nas kompletnie nie ważne
+- profileImageUrl - adres zdjęcia na profilu
+
+Aby zbadać wiek konta, potrzebna nam jest zmienna, która mówi kiedy konto zostało założone. Ograniczymy dane do roku, miesiąca i dnia, a następnie z agregujemy i wyświetlimy na interaktywnym wykresie.
+
+```{r echo=FALSE, message=FALSE}
+
+test <- users_all %>%
+  mutate(created = floor_date(created,unit='day')) %>%
+  filter(created<="2017-07-25 15:0:0") %>%
+  count(created)
+
+test <- xts(x=test$n, order.by = test$created)
+dygraph(test) %>% dyRangeSelector()
+```
+
+Widać wyraźnie, że po 2015 roku sporo osób założyło konto. Najwięcej w okolicach maja 2015 (Andrzej Duda wygrywa wybory prezydencki), październik 2015 (wybory parlamentarne) oraz przełom 2016/2017 (spór o Trybunał Konstytucyjny). Ostatni pik jest 20 lipca, kiedy już całkiem nieźle hulał na Twitterze hashtag #zamachLipcowy.
+
+> Wniosek jest prosty i raczej oczywisty: zawieruchy w polityce przyciągają ludzi do Twittera. Nie jest to jednak jakiś specjalnie masowy ruch. Być może dlatego, że np. wolą się udzielać gdzie indziej np. na Facebooku? Tego nie wiemy, ale mozna tak przypuścić. 
+
+## Ogólna aktywność kont
+
+Wiemy już sporo o kontach, które były zaangażowane. Mamy dane o ich aktywności w okresie od 15 lipca do 24 lipca. Normalnie mając dane o użytkownikach, stworzyłby wskaźnik, który dla każdego konta obliczyłby średnią liczbę tweetów dziennie (liczba tweetów/wiek konta wyrażony w dniach), ale niestety tego zrobić nie możemy. Do takich obliczeń potrzebne są dane aktualne na dzień pobierania tweetów, a ja dane o użytkownikach pobierałem dużo później (o ile dobrze pamiętam to koło 28 lipca). Nie ma to większego znaczenia dla kont, które mają kilka miesięcy czy lat, ale w przypadku młodych kont, szczególnie aktywnych, może mieć.
+
+Możemy jednak ten problem obejść w sprytny sposób. Jeśli postawimy hipotezę, że podejrzane mogą być konta, które np. założono 1 lipca lub później, po to by propagować hashtag, albo odwrotnie by go zwalczać, to wystarczy porównać listę najaktywniejszych kont w badanym okresie i wybrać z nich te, które założone zostały powiedzmy po 1 lipca. Dodatkowo ograniczyliśmy listę kont do tych, które powiedzmy średnio tweetowały/retweetowały co najmniej dwa razy dziennie w okresie 15 - 24 lipca, a więc w tym okresie (średnio) miały na koncie co najmniej 18 aktywności.
+
+```{r echo=FALSE, message=FALSE}
+top_screenNames <- readRDS("dane/top_screenNames.RDS")
+
+top_screenNames %>% 
+  filter(n>18) %>%
+  left_join(users_all) %>%
+  select(screenName, n, created) %>%
+  filter(created>="2017-07-1 0:0:0" & created <= "2017-7-24 15:0:0") %>%
+  kable()
+```
+
+> Lista nie jest zbyt długa, ale niektóre z kont są mocno podejrzane. 
+
+Pierwsze @GlogowskiWitolt czy @jolandajolka to typowe konta aktywistów jednej ze stron konfliktu. Takie konta robią jak to mówią Amerykanie buzz. 
+Niepokojące jest drugie konto @chriss19720722. Po pierwsze to [konto](http://twitter.com/chriss19720722) "za kłódką", a więc dostęp do niego mają tylko te z kont, które są zaakceptowane przez właściciela. Jednocześnie właściciel opublikował w ciągu miesiąca ponad 10 tys. tweetów, czyli kilkaset dziennie. Dużo, zważywszy na ograniczony zasięg tych tweetów. 
+
+> Takie dane i zachowanie może świadczyć, że jest to osoba, która jest trollem albo nawet działa w grupie trolli, których zadaniem jest rozpowszechnianie tweetów. Wcześniej konto nie było "za kłódką", a więc coś się stało, że właściciel je zakłódkował? Być może kontrakcja obozu przeciwnego? Trudno powiedzieć.
+
+
+## Z czego tweetowali?
+
+Ostatnią rzeczą, którą jeszcze zbadamy jest... program czy urządzenie z którego tweetowały konta, szczególnie te aktywne. Dane o tzw. kliencie - czyli aplikacji, którą wykorzystał autor tweeta/retweeta, są zapisane w formie adresu url w zmiennej statusSource. Wydzieliłem z każdego adresu nazwę aplikacji (dla każdej z pozycji). Zobaczmy najpierw listę aplikacji oraz jak często je używano (taki ranking klientów) :-).
+Listę ograniczyłem do pierwszej 30 - ki.
+
+```{r echo=FALSE, message=FALSE}
+tweety %>%
+  extract(statusSource, "source", ".*?>(.*?)<") %>%
+  count(source, sort=TRUE) %>%
+  top_n(30) %>%
+  kable()
+
+
+
+```
+
+W pierwszych 10 pozycjach nie ma nic podejrzanego. To wszystko popularne programy do Twittera. W drugiej 10 - ce mamy dwie zastanawiające pozycje: "demokratischesdesign - Such Bot" i "Twitter for android 3016". W trzeciej 10 - ce pojawiają się nazwy "Twitter for Android" wraz z różnymi numerami. 
+
+Z "demokratischesdesign - Such Bot" sprawa jest prosta. To bot grupy aktywistów, który retwetuje tweety zawierające różne wybrane przez właścicieli słowa lub hashtagi. 
+
+W przypadku "Twitter for Android xxxx" sprawa jest ciekawa. Początkowo myślałem, że to oznaczenie klienta w niektórych modelach smartfonów z Androidem. Jednak po pierwsze numery nie zawsze świadczą o modelu smartfona (np. "1234") poza tym krótka kwerenda Googla pokazała, że producenci standardowo instalowane w smartfonach aplikacje do Twittera nazywają po prostu "Twitter for Android". 
+
+> Najprawdopodobniej są to więc aplikacje Twittera (boty - to też aplikacje), używane do jakiś - niekoniecznie złych - celów. 
+
+Zobaczmy więc, które konta używały aplikacji, których nazwy zaczynały się od "Twitter for" i potem miały oznaczenie liczbowe?
+
+```{r echo=FALSE, message=FALSE}
+tweety %>% 
+  extract(statusSource, "source", ".*?>(.*?)<") %>%
+  select(source) %>%
+  count(source, sort=TRUE) %>%
+  filter(grepl("Twitter for.+\\d+",source)) %>% # Poprawny regex
+  kable()
+
+```
+
+Łał! Aż 185 aplikacji! To wyraźnie śmierdzi farmą botów. Dlaczego? Bo boty nie używają, a przynajmniej niezwykle rzadko używają, tradycyjnych klientów Twittera. Ponieważ są to programy (aplikacje), więc mają swoje nazwy w API Twittera. Nazwa klienta Twittera, to jeden z najskuteczniejszych sposobów na sprawdzenie czy mamy do czynienia z botem. W większości przypadków skuteczny.
+
+Zobaczmy więc które konta publikowały tweety/retweety przy pomocy tych aplikacji?
+
+```{r echo=FALSE, message=F}
+tweety %>% 
+  extract(statusSource, "source", ".*?>(.*?)<") %>%
+  select(source, screenName) %>%
+  filter(grepl("Twitter for.+\\d+",source)) %>% # Poprawny regex
+  count(source, screenName,sort=TRUE) %>%
+  kable()
+  
+```
+
+
+> Ciekawe, ciekawe. Większość kont, które użyły aplikacji "Twitter for" to konta, które w nazwie mają..."PO" i to w różnych formach. Wystarczy pobieżnie sprawdzić te konta, by mieć pewność, że reprezentują - zapewne różne struktury Platformy Obywatelskiej. Co ciekawe, cała czołówka założona została... jednego dnia: 12 marca 2017 roku. (plik z podejrzanymi klientami Twittera i kontami do ściągnięcia na końcu tekstu)
+
+W grupie, która publikowała tymi klientami są też konta, których nazwy sugerują osoby fizyczne. Wszystko wskazuje, że są to po prostu lokalni działacze lub sympatycy partii, którzy wyrazili zgodę na dostęp do swojego konta, albo...hodowane boty.
+
+> Wszystko to ma cechy niewielkiej fermy botów, która służy (albo służyła) do automatycznej publikacji tweetów lub retweetów. Najprawdopodobniej Platforma Obywatelska albo ktoś działający na jej zlecenie ma program - coś w rodzaju CMS-a - którym po prostu steruje publikacją tweetów czy retweetów na tych blisko dwustu kontach.
+
+Co jeszcze bardziej uprawdopodobnia moją tezę o tym, że jest to farma botów, to fakt, że te konta po 24 lipca nagle przestały używać tych podejrzanych klientów, a zaczęły "normalnych" klientów Twittera. 
+
+Dziwne, prawda :-)
+
+> Dla mnie działania, które prowadziły te konta to astrturfing.
+
+Przeanalizowaliśmy aktywność związaną z hashtagiem #zamachlipcowy oraz konta, które ten hashtag publikowały. Kolejną rzeczą, którą się zajmiemy - w następnym odcinku - będzie treść tweetów.
+
+Pytania czy uwagi? Najlepiej w komciach poniżej albo na moim [tajmlajnie na Twitterze](http://dziennikarz.pl)
+
+Jeśli ktoś chce to pliki zawierające dane źródłowe o których wspominam w tym odcinku można ściągnąć:
+
+- [Konta wszystkicu userów](/data/konta_wszystkich_userow.csv)
+- [Konta skasowane po 24 lipca 2017](/data/konta_skasowane.csv)
+- [konta boty](/data/boty_po.csv)
+
