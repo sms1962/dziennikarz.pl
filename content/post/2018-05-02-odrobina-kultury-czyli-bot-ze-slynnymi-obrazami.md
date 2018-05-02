@@ -10,7 +10,7 @@ tags: []
 
 Od kilku tygodni na moim twiterowym koncie hula bot, który zrobiłem niejako przy okazji, bawiąc się danymi z Wikipedii. Trzy razy dziennie publikowana jest reprodukcja losowo wybranego obrazu wraz z linkiem do jego opisu na Wikipedii. Trudno jeszcze powiedzieć o efektach, więc krótko o pomyśle i jego realizacji.
 
-![#OdrobinaKultury. Tweet z obrazem](/post/2018-05-02-odrobina-kultury-czyli-bot-ze-slynnymi-obrazami_files/Screenshot-2018-5-2 tag #odrobinaKultury na Twitterze.png)
+![#OdrobinaKultury. Tweet z obrazem](/post/2018-05-02-odrobina-kultury-czyli-bot-ze-slynnymi-obrazami_files/odrobina_kultury_skrin.png)
 
 W marcu potrzebowałem do jednego z projektów trochę danych, które zawierałyby współrzędne geograficzne. Wtedy też przypomniałem sobie o odłożonym "na kiedyś" pomyśle by nauczyć się pobierania danych z Wikipedii, co teraz gdy projekt Wikidata - czyli semantycznej bazy wiedzy - mocno okrzepł jest stosunkowo proste. 
 
