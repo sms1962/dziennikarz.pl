@@ -30,7 +30,7 @@ Patryk Jaki skasował swój tweet, ale w internecie nic nie ginie, więć jego t
 
 ```{r echo=FALSE}
 # blogdown::shortcode('tweet', '990146397562339329')
-blogdown::shortcode('tweet', '990230707090976769')
+blogdown::shortcode('tweet', '990230707090976769') 
 
 ```
 
