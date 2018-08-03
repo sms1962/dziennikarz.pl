@@ -30,7 +30,7 @@ WHERE {
 ORDER BY (YEAR(?dut))
 
 ```
-Jeśli chcesz zobaczyć jak wynik działania skryptu w Wikidata to [kliknij tu](http://tinyurl.com/ybo958py). Można też kod do wyniku osadzić na stronie i będzie wyglądał tak jak poniżej. Jakby komuś coś nie teges, albo oglada na smartfoniu, [to tu w wersji tabelarycznej.]()
+Jeśli chcesz zobaczyć jak wynik działania skryptu w Wikidata to [kliknij tu](http://tinyurl.com/ybo958py). Można też kod do wyniku osadzić na stronie i będzie wyglądał tak jak poniżej. Jakby komuś coś nie teges, albo oglada na smartfoniu, [to tu w wersji tabelarycznej.](http://tinyurl.com/ydc3uqhe)
 
 To by było na tyle. Miłego klikania.
 
