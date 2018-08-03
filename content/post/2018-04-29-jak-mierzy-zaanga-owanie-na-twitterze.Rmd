@@ -26,7 +26,7 @@ W tym tekście zajmę się dwoma pierwszymi reakcjami czyli lajkami i retweetami
 UWAGA (Edycja 3 sierpnia 2018.)
 Patryk Jaki skasował swój tweet, ale w internecie nic nie ginie, więć jego treść jest w formie graficznej :-)
 
-![Skasowany tweet Patryka Jakiego](/static/img/Jaki_skasowany_tweet.png)
+![Skasowany tweet Patryka Jakiego](http://dziennikarz.pl/static/img/Jaki_skasowany_tweet.png)
 
 ```{r echo=FALSE}
 # blogdown::shortcode('tweet', '990146397562339329')
