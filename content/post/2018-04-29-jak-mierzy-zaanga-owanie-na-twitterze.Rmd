@@ -28,11 +28,11 @@ Patryk Jaki skasował swój tweet, ale w internecie nic nie ginie, więć jego t
 
 ![Skasowany tweet Patryka Jakiego](/static/img/Jaki_skasowany_tweet.png)
 
-# ```{r echo=FALSE}
+```{r echo=FALSE}
 # blogdown::shortcode('tweet', '990146397562339329')
-# blogdown::shortcode('tweet', '990230707090976769')
+blogdown::shortcode('tweet', '990230707090976769')
 
-#```
+```
 
 Kiedy piszę te słowa tweet Jakiego był retweetowany 333 razy i lajkowany 1027 razy. Tweet Trzaskowskiego odpowiednio 95 i 457 razy. Nie trzeba specjalnie wiele liczyć, by stwierdzić, że pod każdym względem więcej było reakcji na tweet Jakiego. Chciałbym jednak na tym przykładzie pokazać metodę, którą stosuję, bo nie zawsze wyniki są tak jednoznaczne i widać je gołym okiem.
 

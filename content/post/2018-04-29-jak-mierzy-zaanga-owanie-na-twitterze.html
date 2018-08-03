@@ -21,7 +21,12 @@ Internauta na Twitterze ma praktycznie cztery możliwości wyrażenia swojego st
 <li><p>No i ostatnią formą jest… <strong>brak reakcji</strong>. Niezwykle trudno to wiarygodnie zmierzyć, bo zależy od wielu czynników np. godziny czy dnia tygodnia w których opublikowano tweet.</p></li>
 </ul>
 <p>W tym tekście zajmę się dwoma pierwszymi reakcjami czyli lajkami i retweetami. Pokażę jak na ich podstawie zmierzyć obiektywną reakcję na publikację polityka. Za dane posłużą mi dwa opublikowane wczoraj tweety Patryka Jakiego i Rafała Trzaskowskiego.</p>
-<p>{{% tweet "990146397562339329" %}}{{% tweet "990230707090976769" %}}</p>
+<p>UWAGA (Edycja 3 sierpnia 2018.) Patryk Jaki skasował swój tweet, ale w internecie nic nie ginie, więć jego treść jest w formie graficznej :-)</p>
+<div class="figure">
+<img src="/static/img/Jaki_skasowany_tweet.png" alt="Skasowany tweet Patryka Jakiego" />
+<p class="caption">Skasowany tweet Patryka Jakiego</p>
+</div>
+{{% tweet "990230707090976769" %}}
 <p>Kiedy piszę te słowa tweet Jakiego był retweetowany 333 razy i lajkowany 1027 razy. Tweet Trzaskowskiego odpowiednio 95 i 457 razy. Nie trzeba specjalnie wiele liczyć, by stwierdzić, że pod każdym względem więcej było reakcji na tweet Jakiego. Chciałbym jednak na tym przykładzie pokazać metodę, którą stosuję, bo nie zawsze wyniki są tak jednoznaczne i widać je gołym okiem.</p>
 <p>Najprościej zaanagażowanie zmierzyć sumując liczbę retweetów i lajków. Sposób prosty ale zawodny bo po pierwsze, z czym zgodzą się chyba wszyscy, retweet jest o wiele cenniejszy, a co za tym idzie rzadszy, niż lajk. Po drugie duża liczba lajków - a tak często jest, że jest ich więcej niż retweetów - ma ogromny wpływ na wynik końcowy. By zniweczyć niekorzystny wpływ jednej zmiennej najlepiej jest, by wartości znajdowały się w jednym zakresie liczb. Metoda sprowadzenia wyników do takiej postaci nazywa się normalizacja i stosuje ją np. Google Trends w swoich analizach.</p>
 <p>Normalizować można do różnych zakresów np. 0 do 1, ale tu wygodniej będzie zastosować zakres od 0 do 100. Po prostu łątwiej wówczas wyniki zapamietać. Znormalizowanie wyniku to obliczenie liczby w zakresie od 0 do 100 dla wybranej wartości. Robi się to bardzo prosto i w pojedycznych wypadkach, każdy, kto posiada odpowiednie dane, może to zrobic ręcznie albo w arkuszu kalkulacyjnym. Tak naprawdę do przeprowadzenia normalizacji tweetów tych dwóch polityków potrzebujemy liczby retweetów i favorites wszystkich ich tweetów <img src="images/tabela_wyniki_jaki_trzaskowski.png" alt="z wybranego okresu czasu." /></p>
