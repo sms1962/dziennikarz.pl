@@ -23,8 +23,13 @@ Internauta na Twitterze ma praktycznie cztery możliwości wyrażenia swojego st
 
 W tym tekście zajmę się dwoma pierwszymi reakcjami czyli lajkami i retweetami. Pokażę jak na ich podstawie zmierzyć obiektywną reakcję na publikację polityka. Za dane posłużą mi dwa opublikowane wczoraj tweety Patryka Jakiego i Rafała Trzaskowskiego.
 
+UWAGA (Edycja 3 sierpnia 2018.)
+Patryk Jaki skasował swój tweet, ale w internecie nic nie ginie, więć jego treść jest w formie graficznej :-)
+
+![Skasowany tweet Patryka Jakiego](/static/img/Jaki_skasowany_tweet.png)
+
 ```{r echo=FALSE}
-blogdown::shortcode('tweet', '990146397562339329')
+# blogdown::shortcode('tweet', '990146397562339329')
 blogdown::shortcode('tweet', '990230707090976769')
 
 ```
