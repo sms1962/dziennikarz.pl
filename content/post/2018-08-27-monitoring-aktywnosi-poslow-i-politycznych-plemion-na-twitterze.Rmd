@@ -1,0 +1,63 @@
+---
+title: Monitoring aktywnośi posłów i politycznych plemion na Twitterze
+author: sms
+date: '2018-08-27'
+slug: monitoring-aktywnosi-poslow-i-politycznych-plemion-na-twitterze
+categories:
+  - R
+tags: []
+---
+
+Od mniej więcej roku działa na moim serwerku skrypt, który zbiera publikacje posłów na Twitterze. Oczywiście związane jest to z nadchodzącym karnawałem wyborczym jaki będziemy mieli w najbliższych latach. Dotychczas korzystałem z tych danych wykorzystując różne narzędzia, postanowiłem jednak trochę to uporzadkować i przygotować się do analiz, które zapewne będę robił przed i po  nadchodzących wyborach. 
+
+Na pierwszy rzut poszli posłowie, bo jest to najwieksza, w miarę zwarta,  a co ważne aktywna, grupa polityczna na Twitterze. Po drugie posłowie są realizatorami polityki partyjnej, a więc z analizy ich tweetów jak na dłoni widać, co w danym momencie jest ważne, albo inaczej: co dana partia, chciałaby, by było ważne.
+
+Jednym z narzędzi, które ho, ho temu sobie zrobiłem, a ostatnio opublikowałem na Twitterze, kilka otrzymanych przy jego użyciu wyników, jest skrypt analizujący aktywność dzienną posłów. Podstawowym efektem jego działania jest wykres prezentujący godzinową aktywność posłów wszystkich ugrupowań sejmowych w ciągu wybranego dnia w układzie godzinowym. Dzieki temu wystarczy mi rzut oka by zobaczyć, która partia jest aktywna, w których godzinach i jak często pojawiał się jej przekaz na Twitterze.
+
+To dośc przydatne narzedzie, bo dzięki niemu nie muszę przeglądać poselskich tweetów w układzie chronologicznym, tylko mogę skupić się na tych godzinach kiedy np. jest ich najwięcej. Wygląda to tak, jak na wykresie poniżej.
+
+![Aktywnośc posłów na Twitterze, rano 27 sierpnia 2018](/post/2018-08-27-monitoring-aktywnosi-poslow-i-politycznych-plemion-na-twitterze_files/aktywnosc_poslow2018-08-27.png){width=80% height=80%}
+
+Wykres właściwie mówi wszystko, ale jak to w internecie, ludzie szybko patrzą i wolno myślą :-), więc objasnie co przedstawia.
+
+- w podtytule mamy słowo "publikacje" i w nawiasie doprecyzowane, co przez to rozumiem. Jednym zdaniem są to wszystkie typy publikacji, jakie posłowie mogli zrobić na Twitterze czyli tweety, retweety i reply. Oczywiście mogę też (i często to robię) rozdzielić te typy publikacji i wygenerować wykres gdzie jest aktywność w postaci tylko tweetów czy reply.
+- na osi X są godziny publikacji, a na osi Y suma wszystkich publikacji posłów konkretnego ugrupowania. 
+Wystarczy teraz rzut oka, by zobaczyć, że posłowie PiS i PO, byli najbardziej aktywni między godziną 8 a 9 rano. Sprawdźmy zatem czy:
+
+- rzeczywiście tak jest?
+- jakie to były typy publikacji?
+- co w nich pisali?
+
+Poniżej w interaktywnej tabeli przedstawiłem publikacje posłów PiS i PO w godzinach od 8 do 9, które możecie sobie przeglądnąć.
+
+```{r tabela_tweetow, echo=FALSE, message=FALSE, warning=FALSE}
+library(DT)
+library(tidyverse)
+
+df <- read_rds("dane/tweety_8-9.RDS")
+df %>% 
+datatable(options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.10.19/i18n/Polish.json')),
+          escape = F)
+
+```
+
+UWAGA! W kolumnie *created_at* jest godzina czasu UTC (2h różnicy od naszego obecnego) jak oryginalnie podaje Twitter. Wystarczy dodać +2 godziny.
+
+Interaktywna tabela umożliwia proste przeszukiwanie, a nawet podsumowywanie danych. Na przykład: 
+
+- jeśli chcesz zobaczyć wszystkie publikacje posłów Platformy Obywatelskiej to w polu szukaj wpisz "PO". 
+- jeśli chcesz wyświetlić tylko publikacje posła Sasina, to wpisz w polu szukaj "SasinJacek".
+
+Zmienna *is_retweet* mówi czy dana publikacja jest tweetem (wartość false) czy retweetem (wartość true). Jeśli więc chcesz wyświetlić wszystkie tweety, wszystkich posłów to w polu szukaj wprowadź "false". 
+
+Przykład, który Wam tutaj pokazuje nie jest specjalnie interesujący. Widać, że aktywność posłów zarówno Prawa i Sprawiedliowości jak i Platformy Obywatelskiej ograniczyła się do retweetów (są trzy tweety). 
+
+Treść tweetów też niewiele mówi. No może to, że jeden z kandydatów na Prezydenta Warszawy - Rafał Trzaskowski, krytykuje słowa min. Gowina o możliwym nieuznaniu przez Polskę, wyroku europejskiego Trybunału Sprawiedliwości. Zapewne będzie to jakiś, pewnie krótki, "przekaz dnia". I tyle. 
+
+Kiedy zrobiłem to narz○edzie, to odrazu nasunęło mi się pytanie: a gdyby tak móc podglądać zwolenników każdej partii na Twitterze? Dwa takie narzędzia dają już zdecydowanie lepszy obraz tego co się dzieje, bo widzimy np. reakcję partyjnych plemion na tweety polityków!  
+
+Mam takie narzędzie, które potrafi na podstawie specyficznych reakcji na Twitterze,  przypisać afiliację partyjną osobie stojącej za kontem. Mimo iż metoda wykrywania jest trywialna, to działa nad wyraz skutecznie. 
+
+Ponieważ obecnie trochę udoskonalam "wykrywacz plemion" :-), to opiszę go w następnym wpisie.
+
+Jakieś uwagi? krytyka? Zapraszam do komciów na dole, albo na Twiterze.
