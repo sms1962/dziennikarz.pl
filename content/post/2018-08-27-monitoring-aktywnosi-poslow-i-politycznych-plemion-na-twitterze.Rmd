@@ -16,8 +16,7 @@ Jednym z narzędzi, które ho, ho temu sobie zrobiłem, a ostatnio opublikowałe
 
 To dośc przydatne narzedzie, bo dzięki niemu nie muszę przeglądać poselskich tweetów w układzie chronologicznym, tylko mogę skupić się na tych godzinach kiedy np. jest ich najwięcej. Wygląda to tak, jak na wykresie poniżej.
 
-
-![Aktywnośc posłów na Twitterze, rano 27 sierpnia 2018](/static/img/aktywnosc_poslow2018-08-27.png){width=80% height=80%}
+![Aktywnośc posłów na Twitterze, rano 27 sierpnia 2018](/img/aktywnosc_poslow2018-08-27.png){width=80% height=80%}
 
 Wykres właściwie mówi wszystko, ale jak to w internecie, ludzie szybko patrzą i wolno myślą :-), więc objasnie co przedstawia.
 
