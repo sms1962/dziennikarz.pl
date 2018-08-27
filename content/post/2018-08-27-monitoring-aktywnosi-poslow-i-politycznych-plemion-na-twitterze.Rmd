@@ -28,33 +28,33 @@ Wystarczy teraz rzut oka, by zobaczyć, że posłowie PiS i PO, byli najbardziej
 - jakie to były typy publikacji?
 - co w nich pisali?
 
-Poniżej w interaktywnej tabeli przedstawiłem publikacje posłów PiS i PO w godzinach od 8 do 9, które możecie sobie przeglądnąć.
+Miała być interaktywna tabela, ale coś mi się konfiguracja blogaska rozjeżdża, więc będzie brzydka normalna, bo tylko taka chodzi :-) No ale przynajmniej coś widać.
+
+Poniżej w tabeli przedstawiłem publikacje posłów PiS i PO w godzinach od 8 do 9, które możecie sobie przeglądnąć.
 
 ```{r tabela_tweetow, echo=FALSE, message=FALSE, warning=FALSE}
-library(DT)
+# library(DT)
+library(knitr)
 library(tidyverse)
 
 df <- read_rds("dane/tweety_8-9.RDS")
-df %>% 
-datatable(options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.10.19/i18n/Polish.json')),
-          escape = F)
+
+kable(df)
+
+# datatable(options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.10.19/i18n/Polish.json')),escape = F)
 
 ```
 
-UWAGA! W kolumnie *created_at* jest godzina czasu UTC (2h różnicy od naszego obecnego) jak oryginalnie podaje Twitter. Wystarczy dodać +2 godziny.
 
-Interaktywna tabela umożliwia proste przeszukiwanie, a nawet podsumowywanie danych. Na przykład: 
+Edit: te chińskie znaczki... ech, to efekt emotikonów. W wolnej chwili wyczyszczę :-)
 
-- jeśli chcesz zobaczyć wszystkie publikacje posłów Platformy Obywatelskiej to w polu szukaj wpisz "PO". 
-- jeśli chcesz wyświetlić tylko publikacje posła Sasina, to wpisz w polu szukaj "SasinJacek".
-
-Zmienna *is_retweet* mówi czy dana publikacja jest tweetem (wartość false) czy retweetem (wartość true). Jeśli więc chcesz wyświetlić wszystkie tweety, wszystkich posłów to w polu szukaj wprowadź "false". 
+Zmienna *is_retweet* mówi czy dana publikacja jest tweetem (wartość false) czy retweetem (wartość true).  
 
 Przykład, który Wam tutaj pokazuje nie jest specjalnie interesujący. Widać, że aktywność posłów zarówno Prawa i Sprawiedliowości jak i Platformy Obywatelskiej ograniczyła się do retweetów (są trzy tweety). 
 
 Treść tweetów też niewiele mówi. No może to, że jeden z kandydatów na Prezydenta Warszawy - Rafał Trzaskowski, krytykuje słowa min. Gowina o możliwym nieuznaniu przez Polskę, wyroku europejskiego Trybunału Sprawiedliwości. Zapewne będzie to jakiś, pewnie krótki, "przekaz dnia". I tyle. 
 
-Kiedy zrobiłem to narz○edzie, to odrazu nasunęło mi się pytanie: a gdyby tak móc podglądać zwolenników każdej partii na Twitterze? Dwa takie narzędzia dają już zdecydowanie lepszy obraz tego co się dzieje, bo widzimy np. reakcję partyjnych plemion na tweety polityków!  
+Kiedy zrobiłem to narzędzie, to odrazu nasunęło mi się pytanie: a gdyby tak móc podglądać zwolenników każdej partii na Twitterze? Dwa takie narzędzia dają już zdecydowanie lepszy obraz tego co się dzieje, bo widzimy np. reakcję partyjnych plemion na tweety polityków!  
 
 Mam takie narzędzie, które potrafi na podstawie specyficznych reakcji na Twitterze,  przypisać afiliację partyjną osobie stojącej za kontem. Mimo iż metoda wykrywania jest trywialna, to działa nad wyraz skutecznie. 
 

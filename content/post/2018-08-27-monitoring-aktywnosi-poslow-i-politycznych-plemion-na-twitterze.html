@@ -8,15 +8,6 @@ categories:
 tags: []
 ---
 
-<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
-<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
-<link href="/rmarkdown-libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
-<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
-<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
-<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
 
 
 <p>Od mniej więcej roku działa na moim serwerku skrypt, który zbiera publikacje posłów na Twitterze. Oczywiście związane jest to z nadchodzącym karnawałem wyborczym jaki będziemy mieli w najbliższych latach. Dotychczas korzystałem z tych danych wykorzystując różne narzędzia, postanowiłem jednak trochę to uporzadkować i przygotować się do analiz, które zapewne będę robił przed i po nadchodzących wyborach.</p>
@@ -35,18 +26,301 @@ tags: []
 <li>jakie to były typy publikacji?</li>
 <li><p>co w nich pisali?</p></li>
 </ul>
-<p>Poniżej w interaktywnej tabeli przedstawiłem publikacje posłów PiS i PO w godzinach od 8 do 9, które możecie sobie przeglądnąć.</p>
-<p><div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27"],["1033957821459648512","1033958008815013889","1033958045330624512","1033961068572409856","1033961572740329472","1033961815720513538","1033962078279749632","1033962304713498624","1033962453456048128","1033962727880962049","1033962792229986304","1033963056043315201","1033963348113678336","1033963403155521536","1033963550795067393","1033964198550749184","1033964338082734080","1033964340951633920","1033964408916123648","1033964550809444352","1033965414269825024","1033965813622038528","1033966053175513088","1033967737587093504","1033968053212643329","1033968937829130240","1033970459350626305"],["MMGosiewska","MMGosiewska","MMGosiewska","SasinJacek","SasinJacek","SasinJacek","StasinskiM","SasinJacek","SasinJacek","MJanyska","SasinJacek","SasinJacek","Leszczyna","SasinJacek","MJanyska","trzaskowski_","TomaszSiemoniak","SasinJacek","CTomczyk","SasinJacek","SasinJacek","MichalSzczerba","ArkadiuszMyrcha","ArkadiuszMyrcha","SasinJacek","lisieckipawel","Anna1Kwiecien"],["2018-08-27T06:02:09Z","2018-08-27T06:02:53Z","2018-08-27T06:03:02Z","2018-08-27T06:15:03Z","2018-08-27T06:17:03Z","2018-08-27T06:18:01Z","2018-08-27T06:19:04Z","2018-08-27T06:19:58Z","2018-08-27T06:20:33Z","2018-08-27T06:21:39Z","2018-08-27T06:21:54Z","2018-08-27T06:22:57Z","2018-08-27T06:24:06Z","2018-08-27T06:24:20Z","2018-08-27T06:24:55Z","2018-08-27T06:27:29Z","2018-08-27T06:28:02Z","2018-08-27T06:28:03Z","2018-08-27T06:28:19Z","2018-08-27T06:28:53Z","2018-08-27T06:32:19Z","2018-08-27T06:33:54Z","2018-08-27T06:34:51Z","2018-08-27T06:41:33Z","2018-08-27T06:42:48Z","2018-08-27T06:46:19Z","2018-08-27T06:52:22Z"],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8],["PiS","PiS","PiS","PiS","PiS","PiS","PO","PiS","PiS","PO","PiS","PiS","PO","PiS","PO","PO","PO","PiS","PO","PiS","PiS","PO","PO","PO","PiS","PiS","PiS"],[true,true,true,true,true,true,true,true,true,false,true,true,true,true,false,false,true,true,true,true,true,true,true,false,true,true,false],["RT @PolskieRadio24: .@MMGosiewska w #PR24: nasze billboardy to odpowiedź; równolegle prezentujemy nasz program. Nasi kandydaci na prezydent…","RT @PolskieRadio24: .@MMGosiewska w #PR24: udowodniliśmy polityką rządu #PiS, że można realizować obietnice wyborcze. Udowodniliśmy na szcz…","RT @PolskieRadio24: .@MMGosiewska w #PR24: czołowi politycy #PO twierdzili, że nie stać nas na #500plus. Pokazaliśmy, że stać nas na to, a…","RT @KwadransPolit: Już za chwilę gościem @KZiemiec będzie @SasinJacek, szef Komitetu Stałego Rady Ministrów, zapraszamy do #TVP1 https://t.…","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Jestem pod wielkim wrażeniem @PatrykJaki, jegoaktywności i chęci rozmowy z ludźmi w Warszawie","RT @KwadransPolit: .@SasinJacek do @KZiemiec: 2 linie metra w 2 kadencje- to nie jest niemożliwe do wykonania","RT @CTomczyk: Oto co wypisuje człowiek wspierający @PatrykJaki w kampanii wyborczej w dzień kiedy Papież @Pontifex_pl przeprasza za przypad…","RT @KwadransPolit: .@SasinJacek do @KZiemiec: @trzaskowski_ mówi, że nie ma pieniędzy w Warszawie; podobnie mówił @janrostowski za rządów @…","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Po 12 latach rządów @Platforma_org w Warszawie wszyscy widzą, że to były złe rządy","W„obiektywnej”tv,”obiektywny” dziennikarz i „obiektywny” polityk,który mówi, że PJaki jest najlepszym kandydatem,i… https://t.co/VzEt0eWpqy","RT @KwadransPolit: .@SasinJacek do @KZiemiec: @trzaskowski_ nie wygląda na człowieka, który chciałby coś w Warszawie faktycznie zrobić; rac…","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Prezes Kaczyński będzie w kampanii wyborczej aktywny, wszyscy będziemy aktywni","RT @dakoblue: Our biggest fans this week: @jozefmoneta, @Leszczyna, @pis_u. Thank you! via https://t.co/c436WnBFhN https://t.co/vDBet5bYlB","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Jarosław Kaczyński jest liderem @pisorgpl i ma się dobrze","I jest na długich wakacjach . Niezwykle długich","Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchod… https://t.co/BnSu2rlHA7","RT @trzaskowski_: Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchodzących…","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Chcielibyśmy kłaść nacisk na wzrost wynagrodzeń dla tych, którzy zarabiają najmniej","RT @trzaskowski_: Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchodzących…","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Rząd bezpośrednio nie zajmuje się kwestią reparacji wojennych","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Nie widzę powodu, by prezydent @AndrzejDuda miał nie przyjmować ślubowania od sędziów wybrany…","RT @NewsPlatforma: #POwMediach (27 sierpnia)\n@MichalSzczerba https://t.co/fm6mekqmnB","RT @trzaskowski_: Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchodzących…","Patryk Jaki lubi to ������ https://t.co/T4i5yRk3vA","RT @KwadransPolit: .@SasinJacek do @KZiemiec: Opozycja wie, że Polacy chcą Unii Europejskiej, mówienie o POLEXIT to straszenie Polaków","RT @Dariusz_Lasocki: Przed chwilą na konferencji sztabu @PatrykJaki o #ObiecankiRafałaiHanki\n\n������ III i IV linia #metro ������������������ https://t.co/SONm…","Wczoraj zostałam obdarowana przez ogrodników i sadowników z Pawłowic powiat Lipski takim pięknym koszem owoców i wa… https://t.co/sLh8SWNJJk"],["Twitter for iPhone","Twitter for iPhone","Twitter for iPhone","Twitter for Android","Twitter for Android","Twitter for Android","Twitter for iPhone","Twitter for Android","Twitter for Android","Twitter for iPhone","Twitter for Android","Twitter for Android","Twitter for iPad","Twitter for Android","Twitter for iPhone","Twitter for iPhone","Twitter for Android","Twitter for Android","Twitter for iPhone","Twitter for Android","Twitter for Android","Twitter for iPhone","Twitter for iPhone","Twitter for iPhone","Twitter for Android","Twitter for iPad","Twitter Lite"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>status_id<\/th>\n      <th>screen_name<\/th>\n      <th>created_at<\/th>\n      <th>godzina<\/th>\n      <th>klub_sejmowy<\/th>\n      <th>is_retweet<\/th>\n      <th>text<\/th>\n      <th>source<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"language":{"url":"//cdn.datatables.net/plug-ins/1.10.19/i18n/Polish.json"},"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script><!--/GA! W kolumnie <em>created_at</em> jest godzina czasu UTC (2h różnicy od naszego obecnego) jak oryginalnie podaje Twitter. Wystarczy dodać +2 godziny.</p>
-<p>Interaktywna tabela umożliwia proste przeszukiwanie, a nawet podsumowywanie danych. Na przykład:</p>
-<ul>
-<li>jeśli chcesz zobaczyć wszystkie publikacje posłów Platformy Obywatelskiej to w polu szukaj wpisz “PO”.</li>
-<li>jeśli chcesz wyświetlić tylko publikacje posła Sasina, to wpisz w polu szukaj “SasinJacek”.</li>
-</ul>
-<p>Zmienna <em>is_retweet</em> mówi czy dana publikacja jest tweetem (wartość false) czy retweetem (wartość true). Jeśli więc chcesz wyświetlić wszystkie tweety, wszystkich posłów to w polu szukaj wprowadź “false”.</p>
+<p>Miała być interaktywna tabela, ale coś mi się konfiguracja blogaska rozjeżdża, więc będzie brzydka normalna, bo tylko taka chodzi :-) No ale przynajmniej coś widać.</p>
+<p>Poniżej w tabeli przedstawiłem publikacje posłów PiS i PO w godzinach od 8 do 9, które możecie sobie przeglądnąć.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">status_id</th>
+<th align="left">screen_name</th>
+<th align="left">created_at</th>
+<th align="right">godzina</th>
+<th align="left">klub_sejmowy</th>
+<th align="left">is_retweet</th>
+<th align="left">text</th>
+<th align="left">source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1033957821459648512</td>
+<td align="left">MMGosiewska</td>
+<td align="left">2018-08-27 08:02:09</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@PolskieRadio24</span>: .<span class="citation">@MMGosiewska</span> w #PR24: nasze billboardy to odpowiedź; równolegle prezentujemy nasz program. Nasi kandydaci na prezydent…</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="even">
+<td align="left">1033958008815013889</td>
+<td align="left">MMGosiewska</td>
+<td align="left">2018-08-27 08:02:53</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@PolskieRadio24</span>: .<span class="citation">@MMGosiewska</span> w #PR24: udowodniliśmy polityką rządu #PiS, że można realizować obietnice wyborcze. Udowodniliśmy na szcz…</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="odd">
+<td align="left">1033958045330624512</td>
+<td align="left">MMGosiewska</td>
+<td align="left">2018-08-27 08:03:02</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@PolskieRadio24</span>: .<span class="citation">@MMGosiewska</span> w #PR24: czołowi politycy #PO twierdzili, że nie stać nas na #500plus. Pokazaliśmy, że stać nas na to, a…</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="even">
+<td align="left">1033961068572409856</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:15:03</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: Już za chwilę gościem <span class="citation">@KZiemiec</span> będzie <span class="citation">@SasinJacek</span>, szef Komitetu Stałego Rady Ministrów, zapraszamy do #TVP1 <a href="https://t" class="uri">https://t</a>.…</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033961572740329472</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:17:03</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Jestem pod wielkim wrażeniem <span class="citation">@PatrykJaki</span>, jegoaktywności i chęci rozmowy z ludźmi w Warszawie</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="even">
+<td align="left">1033961815720513538</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:18:01</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: 2 linie metra w 2 kadencje- to nie jest niemożliwe do wykonania</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033962078279749632</td>
+<td align="left">StasinskiM</td>
+<td align="left">2018-08-27 08:19:04</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@CTomczyk</span>: Oto co wypisuje człowiek wspierający <span class="citation">@PatrykJaki</span> w kampanii wyborczej w dzień kiedy Papież <span class="citation">@Pontifex_pl</span> przeprasza za przypad…</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="even">
+<td align="left">1033962304713498624</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:19:58</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: <span class="citation">@trzaskowski_</span> mówi, że nie ma pieniędzy w Warszawie; podobnie mówił <span class="citation">@janrostowski</span> za rządów @…</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033962453456048128</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:20:33</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Po 12 latach rządów <span class="citation">@Platforma_org</span> w Warszawie wszyscy widzą, że to były złe rządy</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="even">
+<td align="left">1033962727880962049</td>
+<td align="left">MJanyska</td>
+<td align="left">2018-08-27 08:21:39</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">FALSE</td>
+<td align="left">W„obiektywnej”tv,”obiektywny” dziennikarz i „obiektywny” polityk,który mówi, że PJaki jest najlepszym kandydatem,i… <a href="https://t.co/VzEt0eWpqy" class="uri">https://t.co/VzEt0eWpqy</a></td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="odd">
+<td align="left">1033962792229986304</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:21:54</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: <span class="citation">@trzaskowski_</span> nie wygląda na człowieka, który chciałby coś w Warszawie faktycznie zrobić; rac…</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="even">
+<td align="left">1033963056043315201</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:22:57</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Prezes Kaczyński będzie w kampanii wyborczej aktywny, wszyscy będziemy aktywni</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033963348113678336</td>
+<td align="left">Leszczyna</td>
+<td align="left">2018-08-27 08:24:06</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@dakoblue</span>: Our biggest fans this week: <span class="citation">@jozefmoneta</span>, <span class="citation">@Leszczyna</span>, <span class="citation">@pis_u</span>. Thank you! via <a href="https://t.co/c436WnBFhN" class="uri">https://t.co/c436WnBFhN</a> <a href="https://t.co/vDBet5bYlB" class="uri">https://t.co/vDBet5bYlB</a></td>
+<td align="left">Twitter for iPad</td>
+</tr>
+<tr class="even">
+<td align="left">1033963403155521536</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:24:20</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Jarosław Kaczyński jest liderem <span class="citation">@pisorgpl</span> i ma się dobrze</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033963550795067393</td>
+<td align="left">MJanyska</td>
+<td align="left">2018-08-27 08:24:55</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">FALSE</td>
+<td align="left">I jest na długich wakacjach . Niezwykle długich</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="even">
+<td align="left">1033964198550749184</td>
+<td align="left">trzaskowski_</td>
+<td align="left">2018-08-27 08:27:29</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">FALSE</td>
+<td align="left">Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchod… <a href="https://t.co/BnSu2rlHA7" class="uri">https://t.co/BnSu2rlHA7</a></td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="odd">
+<td align="left">1033964338082734080</td>
+<td align="left">TomaszSiemoniak</td>
+<td align="left">2018-08-27 08:28:02</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@trzaskowski_</span>: Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchodzących…</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="even">
+<td align="left">1033964340951633920</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:28:03</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Chcielibyśmy kłaść nacisk na wzrost wynagrodzeń dla tych, którzy zarabiają najmniej</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033964408916123648</td>
+<td align="left">CTomczyk</td>
+<td align="left">2018-08-27 08:28:19</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@trzaskowski_</span>: Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchodzących…</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="even">
+<td align="left">1033964550809444352</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:28:53</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Rząd bezpośrednio nie zajmuje się kwestią reparacji wojennych</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033965414269825024</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:32:19</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Nie widzę powodu, by prezydent <span class="citation">@AndrzejDuda</span> miał nie przyjmować ślubowania od sędziów wybrany…</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="even">
+<td align="left">1033965813622038528</td>
+<td align="left">MichalSzczerba</td>
+<td align="left">2018-08-27 08:33:54</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@NewsPlatforma</span>: #POwMediach (27 sierpnia)</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="citation">@MichalSzczerba</span> https:</td>
+<td align="left">//t.co/fm6mekqmnB</td>
+<td align="left"></td>
+<td align="right"></td>
+<td align="left"></td>
+<td align="left">Tw</td>
+<td align="left">itter for iPhone</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">1033966053175513088</td>
+<td align="left">ArkadiuszMyrcha</td>
+<td align="left">2018-08-27 08:34:51</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@trzaskowski_</span>: Wypowiedź Gowina o ignorowaniu wyroku Trybunału Sprawiedliwości UE oznacza faktyczny POLEXIT. Warszawiacy w nadchodzących…</td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="odd">
+<td align="left">1033967737587093504</td>
+<td align="left">ArkadiuszMyrcha</td>
+<td align="left">2018-08-27 08:41:33</td>
+<td align="right">8</td>
+<td align="left">PO</td>
+<td align="left">FALSE</td>
+<td align="left">Patryk Jaki lubi to 攼㹤愼㸰戼㹤攼㹤戼㸸㠼㸲 <a href="https://t.co/T4i5yRk3vA" class="uri">https://t.co/T4i5yRk3vA</a></td>
+<td align="left">Twitter for iPhone</td>
+</tr>
+<tr class="even">
+<td align="left">1033968053212643329</td>
+<td align="left">SasinJacek</td>
+<td align="left">2018-08-27 08:42:48</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@KwadransPolit</span>: .<span class="citation">@SasinJacek</span> do <span class="citation">@KZiemiec</span>: Opozycja wie, że Polacy chcą Unii Europejskiej, mówienie o POLEXIT to straszenie Polaków</td>
+<td align="left">Twitter for Android</td>
+</tr>
+<tr class="odd">
+<td align="left">1033968937829130240</td>
+<td align="left">lisieckipawel</td>
+<td align="left">2018-08-27 08:46:19</td>
+<td align="right">8</td>
+<td align="left">PiS</td>
+<td align="left">TRUE</td>
+<td align="left">RT <span class="citation">@Dariusz_Lasocki</span>: Przed chwilą na konferencji sztabu <span class="citation">@PatrykJaki</span> o #ObiecankiRafałaiHanki</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>攼㹤愼㸰戼㹤攼㹤戼㸱㠼㸹 III i IV linia #metro 攼㹤愼㸰戼㹤攼㹤戼㹡㠼㸷攼㹤愼㸰戼㹤攼㹤戼㹡㠼㸷攼㹤愼㸰戼㹤攼㹤戼㹡㠼㸷 <a href="https://t.co/SONm" class="uri">https://t.co/SONm</a>… Twitter for iPad<br />
+1033970459350626305 Anna1Kwiecien 2018-08-27 08:52:22 8 PiS FALSE Wczoraj zostałam obdarowana przez ogrodników i sadowników z Pawłowic powiat Lipski takim pięknym koszem owoców i wa… <a href="https://t.co/sLh8SWNJJk" class="uri">https://t.co/sLh8SWNJJk</a> Twitter Lite</p>
+<p>Edit: te chińskie znaczki… ech, to efekt emotikonów. W wolnej chwili wyczyszczę :-)</p>
+<p>Zmienna <em>is_retweet</em> mówi czy dana publikacja jest tweetem (wartość false) czy retweetem (wartość true).</p>
 <p>Przykład, który Wam tutaj pokazuje nie jest specjalnie interesujący. Widać, że aktywność posłów zarówno Prawa i Sprawiedliowości jak i Platformy Obywatelskiej ograniczyła się do retweetów (są trzy tweety).</p>
 <p>Treść tweetów też niewiele mówi. No może to, że jeden z kandydatów na Prezydenta Warszawy - Rafał Trzaskowski, krytykuje słowa min. Gowina o możliwym nieuznaniu przez Polskę, wyroku europejskiego Trybunału Sprawiedliwości. Zapewne będzie to jakiś, pewnie krótki, “przekaz dnia”. I tyle.</p>
-<p>Kiedy zrobiłem to narz○edzie, to odrazu nasunęło mi się pytanie: a gdyby tak móc podglądać zwolenników każdej partii na Twitterze? Dwa takie narzędzia dają już zdecydowanie lepszy obraz tego co się dzieje, bo widzimy np. reakcję partyjnych plemion na tweety polityków!</p>
+<p>Kiedy zrobiłem to narzędzie, to odrazu nasunęło mi się pytanie: a gdyby tak móc podglądać zwolenników każdej partii na Twitterze? Dwa takie narzędzia dają już zdecydowanie lepszy obraz tego co się dzieje, bo widzimy np. reakcję partyjnych plemion na tweety polityków!</p>
 <p>Mam takie narzędzie, które potrafi na podstawie specyficznych reakcji na Twitterze, przypisać afiliację partyjną osobie stojącej za kontem. Mimo iż metoda wykrywania jest trywialna, to działa nad wyraz skutecznie.</p>
 <p>Ponieważ obecnie trochę udoskonalam “wykrywacz plemion” :-), to opiszę go w następnym wpisie.</p>
 <p>Jakieś uwagi? krytyka? Zapraszam do komciów na dole, albo na Twiterze.</p>
