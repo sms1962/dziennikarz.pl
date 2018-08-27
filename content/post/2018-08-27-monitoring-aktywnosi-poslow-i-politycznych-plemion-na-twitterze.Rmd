@@ -1,5 +1,5 @@
 ---
-title: Monitoring aktywnośi posłów i politycznych plemion na Twitterze
+title: Monitoring aktywności posłów i politycznych plemion na Twitterze
 author: sms
 date: '2018-08-27'
 slug: monitoring-aktywnosi-poslow-i-politycznych-plemion-na-twitterze
