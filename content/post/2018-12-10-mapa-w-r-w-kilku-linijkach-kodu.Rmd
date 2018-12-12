@@ -1,12 +1,10 @@
 ---
-title: Gdzie mieszka Smok Wawelski czyli mapa w R w kilku linijkach kodu
-author: sms
+title: "Gdzie mieszka Smok Wawelski, czyli mapa w R w kilku linijkach kodu"
+author: "sms"
 date: '2018-12-10'
 slug: mapa-w-r-w-kilku-linijkach-kodu
-categories:
-  - R
-tags:
-  - mapa
+tags: mapa
+categories: R
 ---
 
 ```{r setup, echo=FALSE, message=FALSE, include=FALSE}
