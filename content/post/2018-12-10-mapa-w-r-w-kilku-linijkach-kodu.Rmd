@@ -155,7 +155,7 @@ punkty_krk <- tibble(nazwa=c("Tu mieszka Smok",
                      lat = c(50.053124,50.053221,50.053104,50.052567))
 
 leaflet(punkty_krk) %>% 
-  addProviderTiles(provider = providers$Esri) %>%  
+  addProviderTiles(provider = providers$OpenStreetMap) %>%  
   addMarkers(lng = ~lan, lat = ~lat,popup = htmlEscape(~nazwa))
 ```
 
