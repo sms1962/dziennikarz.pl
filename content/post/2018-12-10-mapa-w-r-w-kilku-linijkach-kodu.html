@@ -63,7 +63,7 @@ leaflet() %&gt;%
 <pre class="r"><code>leaflet() %&gt;% 
   addProviderTiles(provider = providers$OpenStreetMap.BlackAndWhite) %&gt;%  
   setView(lng=lanKrk, lat = latKrK, zoom = 17) </code></pre>
-<p><div id="htmlwidget-5" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<p><div id="htmlwidget-5" style="width:672px;height:192px;" class="leaflet html-widget"></div>
 <script type="application/json" data-for="htmlwidget-5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.BlackAndWhite",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[["50.061652","19.937474"],17,[]]},"evals":[],"jsHooks":[]}</script> Uważny obserwator zauważył pewnie, że mapka powyżej ma… inne rozmiary. To jeszcze jedna z fajnych możliwości, jakie daje nam zaprogramowanie mapy. Takie coś jest niezwykle przydatne, gdy chcemy zwrócić uwagę czytelnika na wybrany fragment mapy.</p>
 <p>Możemy też dokładnie zdefiniować czworobok mapy, podając - jak poniżej - w funkcji <em>fitBoundsTiles()</em> współrzędne lewego, górnego i dolnego prawego rogu.</p>
 <pre class="r"><code>leaflet() %&gt;% 
