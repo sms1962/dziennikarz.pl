@@ -73,7 +73,7 @@ leaflet() %>%
 
 Powiedzmy sobie szczerze, że taki sposób wyboru podkładu mapy do wygodnych nie należy. Jest on przydatny w niektórych sytuacjach, ale gdy chcemy zastosować jakiś popualrny podkład, to na szczęście jest sposób o wiele  prostszy. Leaflet ma zdefiniowane w ramce danych o nazwie *providers* wszystkie popularne podkłady. Wystarczy więc jak w przykładzie poniżej użyć funkcji *addProviderTiles()* i jako parametr *providers* podać nazwę podkładu. Reszta kodu pozostaje bez zmian. 
 
-```{r fig.height=2.5}
+```{r}
 
 leaflet() %>% 
   addProviderTiles(provider = providers$OpenStreetMap.BlackAndWhite) %>%  
@@ -85,7 +85,7 @@ Uważny obserwator zauważył pewnie, że mapka powyżej ma... inne rozmiary. To
 Możemy też dokładnie zdefiniować czworobok mapy, podając - jak poniżej - w funkcji *fitBoundsTiles()* współrzędne lewego, górnego i dolnego prawego rogu.
 
 
-```{r fig.height=1.25}
+```{r}
 
 leaflet() %>% 
   addProviderTiles(provider = providers$Esri.WorldImagery) %>%  
@@ -105,7 +105,7 @@ leaflet() %>%
 
 Analogicznie jak w poprzednim przykładzie, możemy też wykonać przy pomocy funkcji flyToBounds()* najazd na zdefiniowany obszar mapy.
 
-```{r fig.height=1.25}
+```{r}
 leaflet() %>% 
   addProviderTiles(provider = providers$Esri.WorldImagery) %>%  
   flyToBounds(lng1 = 19.932979, lat1 = 50.063454, lng2 = 19.943965, lat2 = 50.061202)
@@ -114,7 +114,7 @@ leaflet() %>%
 
 Jeśli bawiliście się trochę mapami, które tu pokazałem, to zapewne zauważyliście, że można dowolnie powiększać czy pomniejszać widoczny obszar mapy. Nie zawsze chcemy czytelnikowi dać takie możliwości, bo na przykład chcemy, by skupił się na tym, co jest na mapie przedstawione. No i masz! Też to przewidziano, czyli można usunąć przyciski służące do powiększenie/pomniejszenia mapy. Służą temu opcje funkcji tworzenia mapy *leaflet()*, które widać w poniższym kodzie. Standardowo opcja *zoomControl* ma wartość TRUE. Jednak jeśli damy FALSE, to komputer nie będzie wyświetlał przycisków służących do zoomowania.
 
-```{r fig.height=2}
+```{r}
 
 leaflet(options = leafletOptions(zoomControl = FALSE)) %>% 
   addProviderTiles(provider = providers$Esri.WorldImagery) %>%  
@@ -125,7 +125,7 @@ leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
 Sposób podany wyżej jest skuteczny jeśli mamy do czynienia z użytkownikiem niezbyt dociekliwym :-) Taki od razu zorientuje się, że można powiększyć mapę dwukrotnie klikając w wybrane miejsce na mapie :-). Na to też jest sposób! Wystarczy w opcjach *leaflet* określić *minZoom* i *maxZoom* - dwie wartości do jakich można odpowiednio pomniejszyć/powiększyć mapę - wpisać tą samą wartość zoomu. Przy okazji zauważ, że użyłem kolejnego podkładu, czyli mapy satelitarnej. Nie z Google Maps, tylko z Esri.
 
 
-```{r fig.height= 2}
+```{r}
 leaflet(options = leafletOptions(zoomControl = FALSE,minZoom = 15, maxZoom = 15)) %>% 
   addProviderTiles(provider = providers$Esri.WorldImagery) %>%  
   fitBounds(lng1 = 19.932979, lat1 = 50.063454, lng2 = 19.943965, lat2 = 50.061202)
