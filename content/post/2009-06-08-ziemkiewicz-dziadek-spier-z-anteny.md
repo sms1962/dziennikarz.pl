@@ -12,13 +12,12 @@ categories:
   - Varia
 tags:
   - Rymarz
-  - Spierd...
   - TVP Info
   - Ziemkiewicz
 
 ---
 <img alt="" src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Ziemkiewicz.jpg/240px-Ziemkiewicz.jpg" class="aligncenter" width="240" height="289" />
 
-Tymi słowami Rafał Ziemkiewicz skomentował wystąpienie przewodniczącego Państwowej Komisji Wyborczej Ferdynanda Rymarza w Antysalonie, nadawanym w programie TVP Info. Wydaje mi się, że ktoś powinien to samo jemu powiedzieć&#8230;
+Tymi słowami Rafał Ziemkiewicz skomentował wystąpienie przewodniczącego Państwowej Komisji Wyborczej Ferdynanda Rymarza w Antysalonie, nadawanym w programie TVP Info. Wydaje mi się, że ktoś powinien to samo jemu powiedzieć.
   
 <!--more-->

@@ -73,7 +73,7 @@ leaflet() %>%
 
 Powiedzmy sobie szczerze, że taki sposób wyboru podkładu mapy do wygodnych nie należy. Jest on przydatny w niektórych sytuacjach, ale gdy chcemy zastosować jakiś popualrny podkład, to na szczęście jest sposób o wiele  prostszy. Leaflet ma zdefiniowane w ramce danych o nazwie *providers* wszystkie popularne podkłady. Wystarczy więc jak w przykładzie poniżej użyć funkcji *addProviderTiles()* i jako parametr *providers* podać nazwę podkładu. Reszta kodu pozostaje bez zmian. 
 
-```{r}
+```{r fig.height=2}
 
 leaflet() %>% 
   addProviderTiles(provider = providers$OpenStreetMap.BlackAndWhite) %>%  

@@ -1,0 +1,139 @@
+---
+title: Tu w Krakowie mieszkają dziewice, czyli mapy w R, część 2
+author: sms
+date: '2018-12-13'
+slug: tu-w-krakowie-mieszkaja-dziewice-czyli-mapy-w-r-czesc-2
+categories:
+  - R
+tags:
+  - mapy
+---
+
+
+```{r setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(htmltools)
+library(leaflet)
+library(htmlwidgets)
+```
+
+wieści. Smok Wawelski potrzebuje dziewic, a więc musimy je zlokalizować, co w Krakowie nie jest takie proste. Jak już je znajdziemy, to miejsca gdzie mieszkają oznaczymy w specjalny sposób na mapie, tak, że każdy te miejsca zauważy :-)
+
+W poprzednim poście pokazałem Ci jak stworzyć prostą mapę i dodać do niej punkty o znanych współrzednych oraz dodaliśmy szczyptę interakcji i sprawiliśmy, że po kliknięciu na punkt, pojawiał się dymek z opisem. 
+Ustaliliśmy też, że standardowe "pinezki", którymi się oznacza punkty, może nie tyle są brzydkie, ale z pewnością mało oryginalne. Czas to zmienić.
+
+Dla przypomnienia, kod który wyświetlał gdzie była historia związana ze Smokiem Wawelskim.
+
+```{r}
+# definicja współrzednych i opisów punktów
+punkty_krk <- tibble(nazwa=c("Tu mieszka Smok",
+                             "Baranek",
+                             "Szewc Dratewka",
+                             "Tu smok pił wodę"),
+                     lan = c(19.933570,19.933006, 19.933076,19.933301),
+                     lat = c(50.053124,50.053221,50.053104,50.052567))
+
+# Rysowanie mapy z podkładem OpenStreetMap oraz dodanie punktów na mapie
+map <- leaflet(punkty_krk) %>% 
+  addProviderTiles(provider = providers$OpenStreetMap) %>%  
+  addMarkers(lng = ~lan, lat = ~lat,popup = htmlEscape(~nazwa))
+
+
+```
+
+## Zmieniamy ikonę
+```{r}
+# Bibliteka z tysiącami ikonek
+url_dragon_icon = "http://icons.iconarchive.com/icons/martin-berube/character/128/Dragon-icon.png"
+
+ikonaSmoka <-makeIcon(
+  iconUrl = url_dragon_icon,
+  iconWidth = 30, iconHeight = 30
+  
+)
+
+leaflet(data = punkty_krk) %>% addTiles() %>%
+  addMarkers(~lan, ~lat, icon = ikonaSmoka)
+```
+
+## Jeśli chcemy wykorzystać więcej ikon
+
+```{r}
+
+# definiujemy ikony
+ikonySmokow <- iconList(
+  smok = makeIcon(iconUrl = "http://icons.iconarchive.com/icons/martin-berube/character/128/Dragon-icon.png", 30, 30),
+  owieczka = makeIcon("http://icons.iconarchive.com/icons/martin-berube/animal/128/sheep-icon.png", 30, 30)
+)
+
+# Dodaję kolumnę do ramki danych z dwiema wybranymi ikonami smoczków
+dane <- punkty_krk %>% 
+  mutate(ktoraIkona = factor(c("smok","owieczka","smok","owieczka")))
+
+# rysuję mapy i ikony
+leaflet(dane) %>% addTiles() %>%
+  addMarkers(~lan, ~lat, icon = ~ikonySmokow[ktoraIkona])
+```
+
+## AwesomeIcon
+
+```{r}
+
+
+
+kolorMarkera <- function(punkty) {
+  sapply(punkty$ktoraIkona, function(ktoraIkona) {
+  if(ktoraIkona =="smok") {
+    "green"
+  } else if(ktoraIkona == "owieczka") {
+    "orange"
+  } else {
+    "red"
+  } })
+}
+
+icons <- awesomeIcons(
+  icon = 'home', #"ios-close"
+  iconColor = 'black',
+  library = 'ion',
+  squareMarker = TRUE, # Kwadratowe markery
+  markerColor = kolorMarkera(dane)
+)
+
+leaflet(punkty_krk) %>% addTiles() %>%
+  addAwesomeMarkers(~lan, ~lat, icon=icons, label=~as.character(nazwa))
+
+```
+## awesomeMarkers - kwadraty
+
+## Kółka
+
+```{r}
+leaflet(punkty_krk) %>% 
+  addProviderTiles(provider = providers$OpenStreetMap) %>%  
+  addCircles(lng = ~lan, lat = ~lat,
+             radius = 2,
+             weight = 10,
+             color = "red",
+             fill = FALSE,
+             fillColor = "blue",
+             opacity = 1,
+             popup = htmlEscape(~nazwa))
+
+```
+
+
+## Popapy (addPopaps())
+
+```{r}
+
+```
+
+## Jak zapisać mapę w pliku png?
+
+```{r}
+
+htmlwidgets::saveWidget(map, "tmp.html", selfcontained = F)
+webshot::webshot("tmp.html", file = "nazwa_pliku.png", cliprect = "viewport")
+```
+
