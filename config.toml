@@ -32,4 +32,6 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
     alt = "Logo"
 
 [params.icon]
-    url = "favicon.ico"
+    url = "favicon.ico" 
+
+
